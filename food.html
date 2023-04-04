@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery food</title>
+    <link rel="icon" href="img/png5.img.png" sizes="32x32">
+    <link rel="stylesheet" href="fontawesome-free-6.2.1-web/css/all.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jsbarcode/3.6.0/JsBarcode.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Viga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins|Open+Sans&display=swap" rel="stylesheet">
+    <script src="speedtest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style>
+body {
+  background: url('img/back.jpeg') no-repeat center center fixed;
+  background-size: cover;
+
+
+}
+
+
+
+    </style>
+</head>
+<body>
+
+    
+<div class="title-container" style="margin-left: 70px;margin-right: 70px; ">
+    <p id="judulProduk" style="color: aliceblue;">Delivery</p>
+
+   
+  </div>
+  <p id="typing-text" style="font-size: 15px;color: aliceblue; height: 32px; padding-bottom: 8px;"></p>
+  <br>  <br><br><br>    <br>  <br><br><br>
+
+  <script>
+    const typingText = "Jangan pernah khawatir tentang biaya pengiriman lagi, karena kami menyediakan gratis ongkir dan layanan respon cepat untuk daerah Maja dan sekitarnya! ";
+    let index = 0;
+    let speed = 100; // Kecepatan ketik, dalam milidetik
+    
+    function typeWriter() {
+      if (index < typingText.length) {
+        document.getElementById("typing-text").innerHTML += typingText.charAt(index);
+        index++;
+        setTimeout(typeWriter, speed);
+      } else {
+        // Jeda sebelum mengetik ulang
+        setTimeout(resetTypeWriter, 2000);
+      }
+    }
+  
+    function resetTypeWriter() {
+      document.getElementById("typing-text").innerHTML = "";
+      index = 0;
+      setTimeout(typeWriter, speed);
+    }
+  
+    // Mulai mengetik
+    typeWriter();
+  </script>
+
+  <form>
+        <h2 style="color: rgba(0, 0, 0, 0.726);">Isi data pembelian</h2><br>
+  
+        <button type="button" onclick="ambilLokasi()"><i class="fa-solid fa-location-dot"></i></button>
+     <input type="text" id="lokasi" name="lokasi" placeholder="Alamat">
+      <textarea id="pesan" name="pesan" placeholder="Catatan" style="width: 200px; height: 50px; font-size: 13px;"></textarea><br>
+      <button type="button" onclick="pesanMenu('Menu Item 2')">Pesan Sekarang <i class="fa-solid fa-paper-plane"></i></button>
+
+
+    <script>
+      function toggleFormKotak() {
+        var formKotak = document.getElementById("form-kotak");
+        if (formKotak.style.display === "none") {
+          formKotak.style.display = "block";
+        } else {
+          formKotak.style.display = "none";
+        }
+      }
+    </script>
+  </form>
+ 
+
+      <div class="card-88">
+        <div style="position: relative;">
+          <img src="img/seblak lumpia.jpeg" alt="Menu Item 1">
+          <div id="total-price1"
+            style="position: absolute; top: 0; right: 0; background-color: rgba(255, 255, 255, 0.894); color: #000000; padding: 5px; border-radius: 2px;font-size: 15px; ">
+            Rp 10.000</div>
+        </div>
+        <div class="discounted-price" style="color: #ff0000;">Seblak Lumpia</div>
+        <div class="card-description" style=" height: 100px; margin-left: 10px; margin-right: 10px;">
+
+          <label style="color: rgb(0, 0, 0); text-align: left; margin-left: 10px;">
+            <input type="checkbox" name="menu1_rasa" value="jangan pake pedas"> Jangan pake pedas
+          </label>
+          <label style="color: darkorange; text-align: left;margin-left: 10px;">
+            <input type="checkbox" name="menu1_rasa" value="pedas-sedang"> Pedas Sedang
+          </label>
+
+          <label style="color: #ff0000; text-align: left; margin-left: 10px;">
+            <input type="checkbox" name="menu1_rasa" value="pedas-banget"> Pedas banget♨️
+          </label>
+        </div>
+        <div>
+          <button type="button" id="btn-minus1"><i class="fa-solid fa-minus"></i></button>
+          <input type="number" class="input-number" name="menu1_jumlah" value="1" min="0" style="width: 70px;">
+          <button type="button" id="btn-plus1"><i class="fa-solid fa-plus"></i></button>
+        </div>
+      </div>
+
+
+      <div class="card-88">
+
+        <div style="position: relative;">
+          <a href="img/baso ikan.jpeg"data-lightbox="product">
+          <img src="img/baso ikan.jpeg" alt="product">
+        </a>
+          <div id="total-price2"
+            style="position: absolute; top: 0; right: 0; background-color: rgba(255, 255, 255, 0.894); color: #000000; padding: 5px;font-size: 15px;">
+            Rp 10.000</div>
+        </div>
+        <div class="discounted-price" style="color: #ff0101;">Baso ikan</div>
+
+        <div class="card-description" style="height: 100px; margin-left: 10px; margin-right: 10px;">
+          <label style="color: #000000; text-align: left; margin-left: 10px;">
+            <input type="checkbox" name="menu2_rasa" value="Pakai ceker"> Pakai Ceker
+          </label>
+          <label style="color: rgb(0, 0, 0); text-align: left; margin-left: 10px;">
+            <input type="checkbox" name="menu2_rasa" value="jangan pake pedas"> Jangan pake pedas
+          </label>
+          <label style="color: darkorange; text-align: left; margin-left: 10px;">
+            <input type="checkbox" name="menu2_rasa" value="pedas-sedang"> Pedas Sedang
+          </label>
+          <label style="color: #ff0000; text-align: left; margin-left: 10px;">
+            <input type="checkbox" name="menu2_rasa" value="pedas-banget"> Pedas banget♨️
+          </label>
+
+        </div>
+        <div>
+          <button type="button" id="btn-minus2"><i class="fa-solid fa-minus"></i></button>
+          <input type="number" class="input-number" name="menu2_jumlah" value="1" min="0" style="width: 70px;">
+          <button type="button" id="btn-plus2"><i class="fa-solid fa-plus"></i></button>
+        </div>
+      </div>
+      <div class="card-88">
+
+        <div style="position: relative;">
+          <a href="img/pastel ayam.jpeg"data-lightbox="product">
+          <img src="img/pastel ayam.jpeg" alt="product">
+        </a>
+          <div id="total-price3"
+            style="position: absolute; top: 0; right: 0; background-color: rgba(355, 355, 355, 0.894); color: #000000; padding: 5px;font-size: 15px;">
+            Rp 10.000</div>
+        </div>
+        <div class="discounted-price" style="color: #ff0101;">Pastel ayam</div>
+
+        <div class="card-description" style="height: 100px; margin-left: 10px; margin-right: 10px;">
+          <label style="color: #18df0ef0; text-align: left; margin-left: 10px;">
+            <input type="checkbox" name="menu3_rasa" value="Pakai sambal ijo"> Pakai Sambal ijo
+          </label>
+          <label style="color: rgb(0, 0, 0); text-align: left; margin-left: 10px;">
+            <input type="checkbox" name="menu3_rasa" value="jangan pake pedas"> Jangan pake pedas
+          </label>
+          <label style="color: darkorange; text-align: left; margin-left: 10px;">
+            <input type="checkbox" name="menu3_rasa" value="pedas-sedang"> Pedas Sedang
+          </label>
+          <label style="color: #ff0000; text-align: left; margin-left: 10px;">
+            <input type="checkbox" name="menu3_rasa" value="pedas-banget"> Pedas banget♨️
+          </label>
+
+        </div>
+        <div>
+          <button type="button" id="btn-minus3"><i class="fa-solid fa-minus"></i></button>
+          <input type="number" class="input-number" name="menu3_jumlah" value="1" min="0" style="width: 70px;">
+          <button type="button" id="btn-plus3"><i class="fa-solid fa-plus"></i></button>
+        </div>
+      </div>
+      <div class="card-88">
+
+        <div style="position: relative;">
+          <a href="img/es coklat.JPG"data-lightbox="product">
+          <img src="img/es coklat.JPG" alt="product">
+        </a>
+          <div id="total-price4"
+            style="position: absolute; top: 0; right: 0; background-color: rgba(455, 455, 455, 0.894); color: #000000; padding: 5px;font-size: 15px;">
+            Rp 7.000</div>
+        </div>
+        <div class="discounted-price" style="color: #3a3030;">Nyoklat</div>
+
+        <div class="card-description" style="height: 100px; margin-left: 10px; margin-right: 10px;">
+          <label style="color: #bab721f0; text-align: left; margin-left: 10px;">
+            <input type="checkbox" name="menu4_rasa" value="Pakai keju"> Pakai keju
+          </label>
+          <label style="color: rgb(32, 151, 166); text-align: left; margin-left: 10px;">
+            <input type="checkbox" name="menu4_rasa" value="pakai selai"> pakai selai
+          </label>
+          <label style="color: rgb(32, 151, 166); text-align: left; margin-left: 10px;">
+            <input type="checkbox" name="menu4_rasa" value="porsi 10k"> porsi 10k
+          </label>
+          
+        </div>
+        <div>
+          <button type="button" id="btn-minus4"><i class="fa-solid fa-minus"></i></button>
+          <input type="number" class="input-number" name="menu4_jumlah" value="1" min="0" style="width: 70px;">
+          <button type="button" id="btn-plus4"><i class="fa-solid fa-plus"></i></button>
+        </div>
+      </div>
+  
+  <script>
+    function ambilLokasi() {
+      if (navigator.geolocation) {
+        navigator.permissions.query({
+          name: 'geolocation'
+        }).then(permissionStatus => {
+          if (permissionStatus.state === 'granted') {
+            navigator.geolocation.getCurrentPosition(tampilkanPeta);
+          } else if (permissionStatus.state === 'prompt') {
+            navigator.geolocation.getCurrentPosition(tampilkanPeta, error, {
+              timeout: 10000
+            });
+          } else if (permissionStatus.state === 'denied') {
+            alert("Izin lokasi telah ditolak. Aktifkan izin lokasi di pengaturan perangkat Anda.");
+          }
+        });
+      } else {
+        alert("Geolocation tidak didukung oleh browser Anda");
+      }
+    }
+
+    function error(err) {
+      alert(`Tidak dapat memperoleh lokasi: ${err.message}`);
+    }
+
+    function tampilkanPeta(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      const mapUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+      if (confirm(`Lokasi Anda: ${mapUrl}. Apakah Anda ingin membagikan lokasi ini?`)) {
+        window.open(mapUrl);
+      }
+    }
+
+    function pesanMenu() {
+      const nomorWa = '+62895337068069'; // Ganti nomor WhatsApp dengan nomor Anda
+      const lokasi = document.getElementById("lokasi").value;
+      let message = document.getElementById("pesan").value || '';
+
+      // Ambil nilai checkbox untuk menu pertama
+      const menu1Rasas = document.querySelectorAll("input[name='menu1_rasa']:checked");
+      if (menu1Rasas.length > 0) {
+        message += `\n\nBeli seblak lumpia dengan rasa `;
+        for (let i = 0; i < menu1Rasas.length; i++) {
+          if (i > 0) {
+            message += ', ';
+          }
+          message += menu1Rasas[i].value;
+        }
+        const menu1Jumlah = document.querySelector("input[name='menu1_jumlah']");
+        if (menu1Jumlah) {
+          jumlah = parseInt(menu1Jumlah.value);
+          message += ` sebanyak ${jumlah} porsi`;
+        }
+      }
+
+      // Ambil nilai checkbox untuk menu kedua
+      const menu2Rasas = document.querySelectorAll("input[name='menu2_rasa']:checked");
+      if (menu2Rasas.length > 0) {
+        message += `\n\nBeli baso ikan dengan rasa `;
+        for (let i = 0; i < menu2Rasas.length; i++) {
+          if (i > 0) {
+            message += ', ';
+          }
+          message += menu2Rasas[i].value;
+        }
+
+        const menu2Jumlah = document.querySelector("input[name='menu2_jumlah']");
+        if (menu2Jumlah) {
+          jumlah = parseInt(menu2Jumlah.value);
+          message += ` sebanyak ${jumlah} porsi`;
+        }
+      }
+
+         // Ambil nilai checkbox untuk menu kedua
+         const menu3Rasas = document.querySelectorAll("input[name='menu3_rasa']:checked");
+      if (menu3Rasas.length > 0) {
+        message += `\n\nBeli Pastel isi ayam dengan rasa `;
+        for (let i = 0; i < menu3Rasas.length; i++) {
+          if (i > 0) {
+            message += ', ';
+          }
+          message += menu3Rasas[i].value;
+        }
+
+        const menu3Jumlah = document.querySelector("input[name='menu3_jumlah']");
+        if (menu3Jumlah) {
+          jumlah = parseInt(menu3Jumlah.value);
+          message += ` sebanyak ${jumlah} porsi`;
+        }
+      }
+            // Ambil nilai checkbox untuk menu kedua
+            const menu4Rasas = document.querySelectorAll("input[name='menu4_rasa']:checked");
+      if (menu4Rasas.length > 0) {
+        message += `\n\nBeli Es coklat dengan `;
+        for (let i = 0; i < menu4Rasas.length; i++) {
+          if (i > 0) {
+            message += ', ';
+          }
+          message += menu4Rasas[i].value;
+        }
+
+        const menu4Jumlah = document.querySelector("input[name='menu4_jumlah']");
+        if (menu4Jumlah) {
+          jumlah = parseInt(menu4Jumlah.value);
+          message += ` sebanyak ${jumlah} porsi`;
+        }
+      }
+      message += `\n\nLokasi: ${lokasi}`;
+      const link = `https://api.whatsapp.com/send?phone=${nomorWa}&text=${encodeURIComponent(message)}`;
+      window.open(link, '_blank');
+    }
+  </script>
+  <script>
+    function updatePrice1() {
+      const inputNumber1 = document.querySelector('.input-number');
+      const totalPrice1 = document.getElementById('total-price1');
+      const price1 = 10000; // the base price
+      const quantity1 = parseInt(inputNumber1.value); // the input quantity
+      const total1 = price1 * quantity1; // the total price
+      totalPrice1.innerHTML = `Rp ${total1.toLocaleString('id-ID')}`;
+      updateTotalPrice();
+    }
+    function updatePrice2() {
+      const inputNumber2 = document.querySelectorAll('.input-number')[1];
+      const totalPrice2 = document.getElementById('total-price2');
+      const price2 = 10000; // the base price
+      const quantity2 = parseInt(inputNumber2.value); // the input quantity
+      const total2 = price2 * quantity2; // the total price
+      totalPrice2.innerHTML = `Rp ${total2.toLocaleString('id-ID')}`;
+      updateTotalPrice();
+    }
+
+    function updatePrice3() {
+      const inputNumber3 = document.querySelectorAll('.input-number')[2];
+      const totalPrice3 = document.getElementById('total-price3');
+      const price3 = 10000; // the base price
+      const quantity3 = parseInt(inputNumber3.value); // the input quantity
+      const total3 = price3 * quantity3; // the total price
+      totalPrice3.innerHTML = `Rp ${total3.toLocaleString('id-ID')}`;
+      updateTotalPrice();
+    }
+    function updatePrice4() {
+      const inputNumber4 = document.querySelectorAll('.input-number')[3];
+      const totalPrice4 = document.getElementById('total-price4');
+      const price4 = 7000; // the base price
+      const quantity4 = parseInt(inputNumber4.value); // the input quantity
+      const total4 = price4 * quantity4; // the total price
+      totalPrice4.innerHTML = `Rp ${total4.toLocaleString('id-ID')}`;
+      updateTotalPrice();
+    }
+
+
+    const inputNumber1 = document.querySelector('.input-number');
+    const btnMinus1 = document.querySelector('#btn-minus1');
+    const btnPlus1 = document.querySelector('#btn-plus1');
+
+    btnMinus1.addEventListener('click', function () {
+      inputNumber1.stepDown();
+      updatePrice1();
+    });
+
+    btnPlus1.addEventListener('click', function () {
+      inputNumber1.stepUp();
+      updatePrice1();
+    });
+
+    inputNumber1.addEventListener('change', function () {
+      updatePrice1();
+    });
+
+    const inputNumber2 = document.querySelectorAll('.input-number')[1];
+    const btnMinus2 = document.querySelector('#btn-minus2');
+    const btnPlus2 = document.querySelector('#btn-plus2');
+
+    btnMinus2.addEventListener('click', function () {
+      inputNumber2.stepDown();
+      updatePrice2();
+    });
+
+    btnPlus2.addEventListener('click', function () {
+      inputNumber2.stepUp();
+      updatePrice2();
+    });
+
+    inputNumber2.addEventListener('change', function () {
+      updatePrice2();
+    });
+
+    const inputNumber3 = document.querySelectorAll('.input-number')[2];
+    const btnMinus3 = document.querySelector('#btn-minus3');
+    const btnPlus3 = document.querySelector('#btn-plus3');
+
+    btnMinus3.addEventListener('click', function () {
+      inputNumber3.stepDown();
+      updatePrice3();
+    });
+
+    btnPlus3.addEventListener('click', function () {
+      inputNumber3.stepUp();
+      updatePrice3();
+    });
+
+    inputNumber3.addEventListener('change', function () {
+      updatePrice3();
+    });
+    const inputNumber4 = document.querySelectorAll('.input-number')[3];
+    const btnMinus4 = document.querySelector('#btn-minus4');
+    const btnPlus4 = document.querySelector('#btn-plus4');
+
+    btnMinus4.addEventListener('click', function () {
+      inputNumber4.stepDown();
+      updatePrice4();
+    });
+
+    btnPlus4.addEventListener('click', function () {
+      inputNumber4.stepUp();
+      updatePrice4();
+    });
+
+    inputNumber4.addEventListener('change', function () {
+      updatePrice4();
+    });
+  </script>
+
+  <br><br><br><br><br>
+    
+  <footer class="new-footer">
+    <nav>
+      <ul>
+        <li><a href="#" class="menu-1" onclick="location.href='index.html'"><i class="fa-solid fa-hat-cowboy" style="font-size: 20px;"></i><div><span class="fashion" style="color: rgb(101, 101, 101);">Fashion</span></div></a></li>
+        <li><a href="#" class="menu-1" onclick="location.href='food.html'"> <i class="fas fa-utensils" style="font-size: 20px;"></i><div><span class="food"style="color: rgb(101, 101, 101);">Food</span></div></a></li>
+        <li><a href="#" class="menu-1" onclick="location.href='halaman-tujuan.html'"><i class="fa-solid fa-bars" style="font-size: 20px;"></i><div><span class="lainya"style="color: rgb(101, 101, 101);">lainya</span></div></a></li>
+      </ul>
+    </nav>
+  </footer>
+  <script>
+    var footer = document.querySelector('.new-footer');
+    var lastScrollTop = 0;
+    
+    window.addEventListener('scroll', function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+        footer.classList.add('hidden');
+      } else {
+        footer.classList.remove('hidden');
+      }
+      lastScrollTop = scrollTop;
+    });
+    
+    </script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+</body>
+</html>

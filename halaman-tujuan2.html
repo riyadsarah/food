@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="icon" href="img/png5.img.png" sizes="32x32">
+
+
+
+
+    <link rel="stylesheet" href="fontawesome-free-6.2.1-web/css/all.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/jsbarcode/3.6.0/JsBarcode.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Viga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins|Open+Sans&display=swap" rel="stylesheet">
+    <script src="speedtest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  
+    <style type="text/css">
+
+  
+        
+        body {
+
+            top: 0;
+            left: 0;
+            right: 0px;
+            z-index: 10;
+            overflow-x: hidden;
+        }
+
+        table {
+
+            font-size: 15px;
+            line-height: 1.5;
+            color: #ffffff;
+            background-color: rgb(0, 185, 206);
+        }
+
+
+
+        /* CSS untuk container */
+        .container-b {
+
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #007bff;
+            box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 24px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        /* CSS untuk judul */
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        /* CSS untuk input */
+        input[type="text"],
+        input[type="number"] {
+            border: none;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+            background-color: rgb(255, 255, 255);
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input[readonly] {
+            background-color: rgb(255, 255, 255);
+            color: #000000;
+            font-size: 26px;
+            width: 300px;
+            border-radius: 10px;
+            height: 100px;
+            cursor: not-allowed;
+        }
+
+        /* Animasi */
+        @keyframes count-up {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        input.animated {
+            animation: count-up 1s ease;
+        }
+
+
+
+
+
+
+        label {
+            font-size: 15px;
+
+            margin-bottom: 1px;
+        }
+
+        body {
+
+            background-image: linear-gradient(to right, #605548 0, #355f82 0);
+            background: cover;
+        }
+
+        #myChart {
+
+            margin: 10px;
+            padding: 20px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+        }
+
+        #tabel-barang {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 500px;
+            font-size: 12px;
+        }
+
+        /* Style untuk tabel */
+        #my-table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 500px;
+            font-size: 12px;
+        }
+
+        /* Style untuk header tabel */
+        #my-table th {
+
+            font-weight: bold;
+            text-align: center;
+            color: #000000;
+
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+
+
+        /* Style untuk baris genap */
+        #my-table tr:nth-child(even) {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Style untuk baris ganjil */
+        #my-table tr:nth-child(odd) {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .rounded-table {
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .rounded-table table {
+            width: 100%;
+            border-collapse: collapse;
+
+        }
+
+        .rounded-table table th,
+        .rounded-table table td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .rounded-table table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .rounded-table table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .rounded-table table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+
+        .premium-features {
+            background-color: #000000b0;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 30px;
+            margin: 20px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .premium-features h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #00bbff;
+            animation: berkilat-kilat 1s infinite;
+        }
+
+        @keyframes berkilat-kilat {
+            0% {
+                text-shadow: 0 0 10px #00bbff;
+            }
+
+            25% {
+                text-shadow: 0 0 20px #00bbff;
+            }
+
+            50% {
+                text-shadow: 0 0 30px #00bbff;
+            }
+
+            75% {
+                text-shadow: 0 0 20px #00bbff;
+            }
+
+            100% {
+                text-shadow: 0 0 10px #00bbff;
+            }
+        }
+
+
+        .premium-features ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        .premium-features ul li {
+            font-size: 20px;
+            color: #fff6f6;
+            margin-bottom: 10px;
+        }
+
+        .premium-features form label {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 15px;
+            color: #ffffff63;
+        }
+
+        .premium-features form input[type=password] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            color: #666;
+        }
+
+        .premium-features form button {
+            display: inline-block;
+            background-color: #1abc9c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .premium-features form button:hover {
+            background-color: #16a085;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            transition-duration: 0.4s;
+        }
+
+        .delete-button:hover {
+            background-color: #ff5555;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .animasi {
+  animation-name: besar;
+  animation-duration: 1s;
+}
+
+@keyframes besar {
+  from {
+    font-size: 14px;
+  }
+  to {
+    font-size: 24px;
+  }
+}
+
+.outside-box {
+    background-color: #007bff;
+        text-align: center;
+        font-weight: bold;
+        font-size: 30px;
+        padding: 10px;
+        border: 2px solid #ffffff;
+        position: relative;
+    }
+
+    * {
+	
+	font-family: Viga;
+}
+ 
+
+    </style>
+
+</head>
+
+<body>
+
+    <div id="Tatang">
+        <header>
+            <nav id="header-nav">
+                <div class="header-nav-container">
+
+                    <a href="#" class="header-nav-logo"><img id="logo" src="img/png5.img.png" alt="Logo"></a>
+
+                    <div class="header-nav-right">
+
+
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+
+    </div><br><br><br>
+
+
+    <script>
+        var headerNav = document.getElementById("header-nav");
+
+        window.onscroll = function () {
+            if (window.pageYOffset > 100) {
+                headerNav.style.backgroundColor = "transparent";
+            } else {
+                headerNav.style.backgroundColor = "rgba(0,0,0, 0.5)";
+            }
+        };
+    </script>
+
+
+
+
+    <div class="title-container">
+        <h1 class="title">Catatan conter<i class="fa-solid fa-store"
+                style="font-size: 40px; margin-left: 10px; color: rgb(0, 145, 255);"></i></h1>
+    </div><br>
+    
+
+    <br>
+
+    <button type="button" id="show-form-btn" style="font-size: 30px;">Isi Data Table</button>
+
+    <div id="form-container" style="display:none;"><br>
+        <div class="container-b">
+            <div class="outside-box">STOK SALDO</div>
+            <form id="saldo-bank-form">
+                <label for="saldo-name-input">Nama Saldo:</label>
+                <input type="text" id="saldo-name-input" required>
+                <label for="saldo-bank-input">Stok Saldo:</label>
+                <input type="number" id="saldo-bank-input" required placeholder="Rp">
+                <button  type="submit">Tambah</button>
+            </form>
+        </div><br><br>
+        <div class="container-b">
+
+            <div class="outside-box">DATA PENJUALAN</div>
+            <form id="transaksi-form">
+                <label for="transaksi-input">Nama Transaksi:</label>
+                <input type="text" id="nama-transaksi-input" required>
+                <label for="transaksi-input">Total Uang Transaksi:</label>
+                <input type="number" id="transaksi-input" required placeholder="Rp">
+                <label for="harga-input">Harga Jual:</label>
+                <input type="number" id="harga-input" required placeholder="Rp">
+                <button type="submit">Tambah</button>
+            </form>
+        </div>
+    </div><br>
+
+    <script>
+        const showFormBtn = document.getElementById("show-form-btn");
+        const formContainer = document.getElementById("form-container");
+        showFormBtn.addEventListener("click", function () {
+            if (formContainer.style.display === "block") {
+                formContainer.style.display = "none";
+            } else {
+                formContainer.style.display = "block";
+            }
+        });
+    </script>
+
+    <div class="container">
+       
+        <table id="saldo-bank-table">
+            <thead>
+                <tr>
+                    <td colspan="6" class="outside-box">Stok Saldo
+                    </td>
+                <tr>
+                    <th>ID</th>
+                    <th>Nama saldo</th>
+                    <th>Saldo awal</th>
+                    <th>Sisa Saldo</th>
+                    <th>Tanggal</th>
+                    <th>Hapus</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- isi tabel di sini -->
+            </tbody>
+           
+        </table>
+   
+        
+                <!-- isian tabel saldo bank -->
+            </tbody>
+        </table><br><br>
+   
+        <table id="transaksi-table">
+            <thead>
+                <tr>
+                    <td colspan="7" class="outside-box">Data Penjualan
+                    </td>
+                <tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Nama Transaksi</th>
+                    <th>Uang Transaksi</th>
+                    <th>Harga Jual</th>
+                    <th>Laba Bersih</th>
+                    <th>Tanggal</th>
+                    <th>Hapus</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- isian tabel transaksi -->
+            </tbody>
+            <tr>
+                <td colspan="7" class="outside-box"><div id="total-laba-bersih"></div>
+                </td>
+            <tr>
+        </table>
+    </div><br>
+    
+
+    <audio id="submit-audio">
+        <source src="assets/notif12.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.getElementById("saldo-bank-form").addEventListener("submit", function () {
+            document.getElementById("submit-audio").play();
+        });
+
+        document.getElementById("transaksi-form").addEventListener("submit", function () {
+            document.getElementById("submit-audio").play();
+        });
+    </script>
+
+
+
+    <br>
+
+    <script>
+        // Form 1: Stok Saldo Bank
+        const saldoBankForm = document.getElementById('saldo-bank-form');
+        const saldoBankTable = document.getElementById('saldo-bank-table');
+        const saldoBankTableBody = saldoBankTable.getElementsByTagName('tbody')[0];
+
+        window.addEventListener('load', function () {
+            const saldoBankData = JSON.parse(localStorage.getItem('saldoBankData'));
+            if (saldoBankData) {
+                saldoBankData.forEach(function (data) {
+                    const newRow = saldoBankTableBody.insertRow();
+                    const idCell = newRow.insertCell(0);
+                    const nameCell = newRow.insertCell(1);
+                    const saldoAwalCell = newRow.insertCell(2);
+                    const saldoBankCell = newRow.insertCell(3);
+                    const dateTimeCell = newRow.insertCell(4);
+                    const deleteCell = newRow.insertCell(5);
+
+
+                    idCell.innerHTML = data.id;
+                    nameCell.innerHTML = data.name;
+                    saldoAwalCell.innerHTML = data.saldoAwal;
+                    saldoBankCell.innerHTML = formatRupiah(data.saldoBank);
+                    dateTimeCell.innerHTML = data.dateTime;
+                    deleteCell.innerHTML =
+                        '<button class="delete-button"><i class="fa-solid fa-trash"></i></button>';
+
+
+                    // Add event listener to delete button
+                    const deleteButton = deleteCell.querySelector('.delete-button');
+                    deleteButton.addEventListener('click', function () {
+                        const rowToDelete = this.parentNode.parentNode;
+                        saldoBankTableBody.removeChild(rowToDelete);
+
+                        // Update ID for remaining rows
+                        for (let i = 0; i < saldoBankTableBody.rows.length; i++) {
+                            const row = saldoBankTableBody.rows[i];
+                            row.cells[0].innerHTML = i + 1;
+                        }
+
+                        // Update local storage
+                        const saldoBankData = [];
+                        for (let i = 0; i < saldoBankTableBody.rows.length; i++) {
+                            const row = saldoBankTableBody.rows[i];
+                            saldoBankData.push({
+                                id: row.cells[0].innerHTML,
+                                name: row.cells[1].innerHTML,
+                                saldoBank: parseInt(row.cells[3].innerHTML.replace(
+                                    /\D/g, "")),
+                                dateTime: row.cells[4].innerHTML,
+                            });
+                        }
+                        localStorage.setItem('saldoBankData', JSON.stringify(saldoBankData));
+                    });
+                });
+            }
+        });
+
+
+        saldoBankForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const saldoBankInput = document.getElementById('saldo-bank-input');
+            const saldoBankValue = parseInt(saldoBankInput.value.replace(/\D/g, ""));
+            const saldoNameInput = document.getElementById('saldo-name-input');
+            const saldoNameValue = saldoNameInput.value.toLowerCase();
+            if (isNaN(saldoBankValue) || saldoNameValue === '') return;
+
+            // Add row to saldo bank table
+            const newRow = saldoBankTableBody.insertRow();
+            const idCell = newRow.insertCell(0);
+            const nameCell = newRow.insertCell(1);
+            const saldoAwalCell = newRow.insertCell(2);
+            const saldoBankCell = newRow.insertCell(3);
+            const dateTimeCell = newRow.insertCell(4);
+            const deleteCell = newRow.insertCell(5); // add new cell for delete button
+
+            const now = new Date();
+            const dateOptions = {
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            };
+            const timeOptions = {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric'
+            };
+
+            idCell.innerHTML = saldoBankTableBody.rows.length;
+            nameCell.innerHTML = saldoNameValue;
+            saldoAwalCell.innerText = document.getElementById("saldo-bank-input").value;
+            saldoBankCell.innerHTML = formatRupiah(saldoBankValue);
+            dateTimeCell.innerHTML = now.toLocaleDateString('id-ID', dateOptions) + ' pukul ' + now
+                .toLocaleTimeString('id-ID', timeOptions);
+            deleteCell.innerHTML =
+            '<button class="delete-button"><i class="fa-solid fa-trash"></i></button>'; // add delete button to new cell
+
+
+            // Add event listener to delete button
+            const deleteButton = newRow.querySelector('.delete-button');
+            deleteButton.addEventListener('click', function () {
+                const rowToDelete = this.parentNode.parentNode; // get the row to delete
+                saldoBankTableBody.removeChild(rowToDelete); // remove row from table
+
+                // Update ID for remaining rows
+                for (let i = 0; i < saldoBankTableBody.rows.length; i++) {
+                    const row = saldoBankTableBody.rows[i];
+                    row.cells[0].innerHTML = i + 1;
+                }
+
+                // Update local storage
+                const saldoBankData = [];
+                for (let i = 0; i < saldoBankTableBody.rows.length; i++) {
+                    const row = saldoBankTableBody.rows[i];
+                    saldoBankData.push({
+                        id: row.cells[0].innerHTML,
+                        name: row.cells[1].innerHTML,
+                        saldoBank: parseInt(row.cells[3].innerHTML.replace(/\D/g, "")),
+                        dateTime: row.cells[4].innerHTML,
+                    });
+                }
+                localStorage.setItem('saldoBankData', JSON.stringify(saldoBankData));
+            });
+
+
+            // Save data to local storage
+            const saldoBankData = [];
+            for (let i = 0; i < saldoBankTableBody.rows.length; i++) {
+                const row = saldoBankTableBody.rows[i];
+                saldoBankData.push({
+                    id: row.cells[0].innerHTML,
+                    name: row.cells[1].innerHTML,
+                    saldoAwal: row.cells[2].innerHTML,
+                    saldoBank: parseInt(row.cells[3].innerHTML.replace(/\D/g, "")),
+                    dateTime: row.cells[4].innerHTML,
+
+                });
+            }
+            localStorage.setItem('saldoBankData', JSON.stringify(saldoBankData));
+            saldoBankInput.value = '';
+            saldoNameInput.value = '';
+
+
+        });
+
+
+
+        // Form 2: Transaksi
+        const transaksiForm = document.getElementById('transaksi-form');
+        const transaksiTable = document.getElementById('transaksi-table');
+        const transaksiTableBody = transaksiTable.getElementsByTagName('tbody')[0];
+
+        transaksiForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const namaTransaksiInput = document.getElementById('nama-transaksi-input');
+            const namaTransaksiValue = namaTransaksiInput.value.toLowerCase(); // ubah input menjadi huruf kecil
+            if (namaTransaksiValue === '') return;
+
+            const transaksiInput = document.getElementById('transaksi-input');
+            const transaksiValue = parseInt(transaksiInput.value.replace(/\D/g, ""));
+            if (isNaN(transaksiValue)) return;
+
+            const hargaInput = document.getElementById('harga-input');
+            const hargaValue = parseInt(hargaInput.value.replace(/\D/g, ""));
+            if (isNaN(hargaValue)) return;
+
+            const labaBersih = hargaValue - transaksiValue;
+            let totalLabaBersih = labaBersih;
+
+            // Get initial saldo bank data from local storage
+            let saldoBankData = JSON.parse(localStorage.getItem('saldoBankData'));
+            if (!saldoBankData) {
+                saldoBankData = [];
+            }
+
+            const saldoBankRows = saldoBankTableBody.rows;
+for (let i = 0; i < saldoBankRows.length; i++) {
+  const saldoNameCell = saldoBankRows[i].cells[1];
+  const saldoBankCell = saldoBankRows[i].cells[3];
+
+  if (saldoNameCell.innerHTML.toLowerCase() === namaTransaksiValue) {
+    const saldoBankValue = parseInt(saldoBankCell.innerHTML.replace(/\D/g, ""));
+    const saldoBankNewValue = saldoBankValue - transaksiValue;
+    
+    // Beri kelas CSS "animasi" pada cell 3
+    saldoBankCell.classList.add("animasi");
+
+    // Atur isi dari cell 3 dengan nilai baru
+    saldoBankCell.innerHTML = formatRupiah(saldoBankNewValue);
+
+    // Simpan data ke local storage
+    for (let j = 0; j < saldoBankData.length; j++) {
+      if (saldoBankData[j].name === namaTransaksiValue) {
+        saldoBankData[j].saldoBank = saldoBankNewValue;
+        break;
+      }
+    }
+
+    break;
+  }
+}
+
+// Simpan data ke local storage
+localStorage.setItem('saldoBankData', JSON.stringify(saldoBankData));
+
+// Hapus kelas CSS "animasi" setelah 1 detik
+setTimeout(function() {
+  const saldoBankRows = saldoBankTableBody.rows;
+  for (let i = 0; i < saldoBankRows.length; i++) {
+    const saldoBankCell = saldoBankRows[i].cells[3];
+    saldoBankCell.classList.remove("animasi");
+  }
+}, 1000);
+
+
+            // Add row to transaksi table
+            const newRow = transaksiTableBody.insertRow();
+            const idCell = newRow.insertCell(0);
+            const namaTransaksiCell = newRow.insertCell(1);
+            const transaksiCell = newRow.insertCell(2);
+            const hargaCell = newRow.insertCell(3);
+            const labaBersihCell = newRow.insertCell(4);
+            const tanggalCell = newRow.insertCell(5);
+            const hapusCell = newRow.insertCell(6); // add new cell for delete button
+
+            idCell.innerHTML = transaksiTableBody.rows.length;
+            namaTransaksiCell.innerHTML = namaTransaksiValue;
+            transaksiCell.innerHTML = formatRupiah(transaksiValue);
+            hargaCell.innerHTML = formatRupiah(hargaValue);
+            labaBersihCell.innerHTML = formatRupiah(totalLabaBersih);
+            const date = new Date();
+            const options = {
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: false
+            };
+            const tanggalValue = date.toLocaleString('id-ID', options);
+            tanggalCell.innerHTML = tanggalValue;
+            hapusCell.innerHTML =
+                '<button class="delete-button" onclick="hapusCell(this)"><i class="fa-solid fa-trash"></i></button>';
+
+
+
+
+
+
+        });
+
+        function hapusCell(button) {
+            const row = button.parentNode.parentNode;
+            const transaksiData = JSON.parse(localStorage.getItem('transaksiData'));
+            const saldoBankData = JSON.parse(localStorage.getItem('saldoBankData'));
+            const saldoName = row.cells[1].innerHTML.toLowerCase();
+            const transaksiValue = parseInt(row.cells[2].innerHTML.replace(/\D/g, ""));
+
+            // Remove row data from transaksiData in local storage
+            for (let i = 0; i < transaksiData.length; i++) {
+                if (transaksiData[i].nama.toLowerCase() === saldoName) {
+                    transaksiData.splice(i, 1);
+                    break;
+                }
+            }
+            localStorage.setItem('transaksiData', JSON.stringify(transaksiData));
+
+            // Update saldo bank data and save to local storage
+            for (let i = 0; i < saldoBankData.length; i++) {
+                if (saldoBankData[i].name.toLowerCase() === saldoName) {
+                    saldoBankData[i].saldoBank += transaksiValue;
+                    break;
+                }
+            }
+            localStorage.setItem('saldoBankData', JSON.stringify(saldoBankData));
+
+            // Remove row from table
+            transaksiTableBody.removeChild(row);
+
+            // Update balance table in the UI
+            updateBalanceTable();
+        }
+
+        function updateBalanceTable() {
+            // Get updated saldo bank data from local storage
+            let saldoBankData = JSON.parse(localStorage.getItem('saldoBankData'));
+            if (!saldoBankData) {
+                saldoBankData = [];
+            }
+
+            // Update saldo bank table in the UI
+            const saldoBankRows = saldoBankTableBody.rows;
+            for (let i = 0; i < saldoBankRows.length; i++) {
+                const saldoNameCell = saldoBankRows[i].cells[1];
+                const saldoBankCell = saldoBankRows[i].cells[3];
+                const saldoName = saldoNameCell.innerHTML.toLowerCase();
+
+                for (let j = 0; j < saldoBankData.length; j++) {
+                    if (saldoBankData[j].name.toLowerCase() === saldoName) {
+                        saldoBankCell.innerHTML = formatRupiah(saldoBankData[j].saldoBank);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+
+
+        // Function to save data to local storage
+        function saveDataToLocalStorage() {
+            const transaksiRows = transaksiTableBody.rows;
+            const transaksiData = [];
+
+            for (let i = 0; i < transaksiRows.length; i++) {
+                const transaksiRow = transaksiRows[i];
+                const transaksi = {
+                    id: transaksiRow.cells[0].innerHTML,
+                    nama: transaksiRow.cells[1].innerHTML,
+                    transaksi: transaksiRow.cells[2].innerHTML,
+                    harga: transaksiRow.cells[3].innerHTML,
+                    labaBersih: transaksiRow.cells[4].innerHTML,
+                    tanggal: transaksiRow.cells[5].innerHTML
+
+                };
+                transaksiData.push(transaksi);
+            }
+            localStorage.setItem('transaksiData', JSON.stringify(transaksiData));
+        }
+
+
+        // Function to load data from local storage
+        function loadDataFromLocalStorage() {
+            const transaksiData = JSON.parse(localStorage.getItem('transaksiData'));
+            if (transaksiData) {
+                for (let i = 0; i < transaksiData.length; i++) {
+                    const transaksi = transaksiData[i];
+                    const newRow = transaksiTableBody.insertRow();
+                    newRow.insertCell(0).innerHTML = transaksi.id;
+                    newRow.insertCell(1).innerHTML = transaksi.nama;
+                    newRow.insertCell(2).innerHTML = transaksi.transaksi;
+                    newRow.insertCell(3).innerHTML = transaksi.harga;
+                    newRow.insertCell(4).innerHTML = transaksi.labaBersih;
+                    newRow.insertCell(5).innerHTML = transaksi.tanggal;
+                    newRow.insertCell(6).innerHTML =
+                        '<button class="delete-button"  onclick="hapusCell(this)"><i class="fa-solid fa-trash"></i></button>';
+                }
+            }
+        }
+
+
+        // Add event listener to save data to local storage after data is added to transaksi table
+        transaksiForm.addEventListener('submit', function (event) {
+            // Your existing code here
+            saveDataToLocalStorage();
+        });
+
+        // Load data from local storage on page load
+        window.addEventListener('load', function () {
+            loadDataFromLocalStorage();
+        });
+        // Function to format number as Rupiah currency
+        function formatRupiah(angka) {
+            const formatter = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            });
+            return formatter.format(angka);
+        }
+    </script>
+
+    
+
+    <script>
+        window.onload = function () {
+            const labaBersihCells = transaksiTableBody.querySelectorAll("td:nth-child(5)");
+            let totalLabaBersih = 0;
+            labaBersihCells.forEach(cell => {
+                const labaBersihValue = parseInt(cell.innerHTML.replace(/\D/g, ""));
+                totalLabaBersih += labaBersihValue;
+            });
+            const totalLabaBersihDiv = document.getElementById("total-laba-bersih");
+            totalLabaBersihDiv.innerHTML = "Total laba bersih: " + formatRupiah(totalLabaBersih);
+        };
+    </script>
+
+
+</body>
+
+</html>

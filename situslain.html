@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Style untuk card */
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          max-width: 300px;
+          margin: auto;
+          text-align: center;
+          font-family: arial;
+          background-color: #fff;
+        }
+  
+        /* Style untuk gambar situs */
+        .card img {
+          max-width: 100%;
+          height: auto;
+        }
+  
+        /* Style untuk keterangan situs */
+        .container {
+          padding: 2px 16px;
+        }
+  
+        .container h4 {
+          font-size: 18px;
+          color: #333;
+        }
+  
+        .container p {
+          font-size: 16px;
+          color: #777;
+        }
+      </style>
+</head>
+<body>
+    
+<h1>Cek Kuota IM3</h1>
+
+<form>
+  <label for="phone">Nomor Handphone:</label>
+  <input type="tel" id="phone" name="phone" pattern="[0-9]{10,12}" required>
+
+  <button type="button" onclick="checkKuota()">Cek Kuota</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+  function checkKuota() {
+    var phone = document.getElementById("phone").value;
+
+    // Mengirim request ke API untuk mendapatkan informasi kuota
+    $.ajax({
+      url: "https://api.im3ooredoo.com.my/webapi/api/Personal/CheckAccountQuota",
+      type: "POST",
+      dataType: "json",
+      data: {
+        PhoneNumber: phone
+      },
+      success: function(response) {
+        // Menampilkan informasi kuota pada halaman
+        var result = document.getElementById("result");
+        result.innerHTML = "<h2>Informasi Kuota</h2>";
+        result.innerHTML += "<p>Nomor HP: " + response.accountQuota.phoneNumber + "</p>";
+        result.innerHTML += "<p>Kuota Utama: " + response.accountQuota.quotaData[0].quotaValue + " " + response.accountQuota.quotaData[0].quotaUnit + "</p>";
+        result.innerHTML += "<p>Kuota Bonus: " + response.accountQuota.quotaData[1].quotaValue + " " + response.accountQuota.quotaData[1].quotaUnit + "</p>";
+      },
+      error: function() {
+        // Menampilkan pesan error jika terjadi kesalahan pada saat mengambil informasi kuota
+        var result = document.getElementById("result");
+        result.innerHTML = "<p>Terjadi kesalahan pada saat mengambil informasi kuota. Silakan coba lagi nanti.</p>";
+      }
+    });
+  }
+</script>
+
+
+
+    
+</body>
+</html>
