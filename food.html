@@ -27,14 +27,44 @@ body {
 
 
 }
+.container {
+  position: relative;
+  width: 80%;
+  margin: 50px auto;
+}
+
+#input-text {
+  width: 100%;
+  border: none;
+  font-size: 18px;
+  resize: none;
+  padding: 20px;
+  background-color: transparent;
+  color: #fff;
+}
+
+.input-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  color: #fff;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+#input-text:focus + .input-label {
+  transform: translate(-50%, -120%);
+  font-size: 14px;
+}
 
 
 
     </style>
 </head>
 <body>
-
-    
+ 
 <div class="title-container" style="margin-left: 70px;margin-right: 70px; ">
     <p id="judulProduk" style="color: aliceblue;">Delivery</p>
 
