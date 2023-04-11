@@ -1019,15 +1019,18 @@
             <button type="button" onclick="deleteNote()">Hapus</button>
           </div><br><br>
           <div>
+            <button type="button" onclick="alignText()">Align Text</button>
             <button type="button" onclick="combineText()">Gabung Teks</button>
             <button type="button" onclick="countWords()">HitungKata</button>
             <button type="button" onclick="downloadNote()">Unduh</button>
        
+
 <div>  <label for="searchText">Teks yang ingin diubah:</label>
-  <input type="text" id="searchText" /></div>
- <div><label for="replaceText">Teks pengganti:</label>
-  <input type="text" id="replaceText" /></div> 
-  <button type="button" onclick="replaceText()">Ubah Teks</button>
+<input type="text" id="searchText" /></div>
+<div><label for="replaceText">Teks pengganti:</label>
+<input type="text" id="replaceText" /></div>
+<button type="button" onclick="replaceText()">Ubah Teks</button>
+
 
 
 
@@ -9139,6 +9142,22 @@ berikut hasilnya :
           }
         }
       }
+
+      function alignText() {
+  var textarea = document.getElementById("note");
+  var lines = textarea.value.split("\n");
+  var lineHeight = parseInt(window.getComputedStyle(textarea, null).getPropertyValue("line-height"));
+  var paddingTop = parseInt(window.getComputedStyle(textarea, null).getPropertyValue("padding-top"));
+  var paddingBottom = parseInt(window.getComputedStyle(textarea, null).getPropertyValue("padding-bottom"));
+  var maxHeight = (lineHeight * lines.length) + paddingTop + paddingBottom;
+  textarea.style.height = "";
+  textarea.style.height = maxHeight + "px";
+  for (var i = 0; i < lines.length; i++) {
+    lines[i] = lines[i].trim();
+  }
+  textarea.value = lines.join("\n");
+}
+
       // memanggil fungsi loadNotes() ketika halaman dimuat
       loadNotes();
     </script>

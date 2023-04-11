@@ -21,6 +21,111 @@
     <script src="speedtest.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <style>
+
+#explanation {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  z-index: 9999;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 300px;
+  background-color: #1b1b1bbb;
+  border: solid black 1px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  color: #ffffff;
+  animation: pop-up 0.3s ease forwards;
+}
+
+@keyframes pop-up {
+  from {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+    }
+    to {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    }
+
+
+    #indicator-container {
+      display: inline-block;
+      position: relative;
+    }
+
+    #indicator {
+      position: absolute;
+      top: 23%;
+      left: 83%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+
+      animation: pulse 5s linear infinite;
+      z-index: 1;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0.8;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.2);
+          opacity: 0.4;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0.8;
+        }
+      }
+
+
+      #indicator:hover {
+        cursor: pointer;
+      }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 body {
   background-image: linear-gradient(to right, #009999 0, #059bff 0);
   background: cover;
@@ -73,74 +178,6 @@ body {
 		}
 
 
-    #explanation {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
-  z-index: 9999;
-  border-radius: 10px;
-  padding: 10px;
-  max-width: 300px;
-  background-color: #1b1b1bbb;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #ffffff;
-  animation: pop-up 0.3s ease forwards;
-}
-
-@keyframes pop-up {
-  from {
-    transform: translate(-50%, -50%) scale(0.5);
-    opacity: 0;
-  }
-  to {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-}
-
-
-#indicator-container {
-  display: inline-block;
-  position: relative;
-}
-
-#indicator {
-  position: absolute;
-  top: 23%;
-  left: 83%;
-  transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-
-  animation: pulse 5s linear infinite;
-  z-index: 1;
-}
-
-@keyframes pulse {
-  0% {
-    transform: translate(-50%, -50%) scale(0.8);
-    opacity: 0.8;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.2);
-    opacity: 0.4;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(0.8);
-    opacity: 0.8;
-  }
-}
-
-
-#indicator:hover {
-  cursor: pointer;
-}
-
 
 
 
@@ -162,13 +199,28 @@ body {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </style>
 </head>
 <body>
 
 
-  
- 
 <div class="title-container" style="margin-left: 70px;margin-right: 70px; ">
     <p id="judulProduk" style="color: aliceblue;">Delivery</p>
 
@@ -599,53 +651,73 @@ body {
     <div id="indicator" onclick="showExplanation()" onmouseover="showExplanation()" onmouseout="hideExplanation()"></div>
     <img src="img/jurus.png" alt="">
   </div>
-  
-  <div id="explanation" style="display:none; border: 1px solid black; padding: 10px;">
+
+  <div id="explanation" >
     <p>Indikator ini menunjukkan kecepatan koneksi internet Anda. Jika warna indikator adalah:</p>
-    <ul>
-      <li>Biru: koneksi bagus</li>
-      <li>Hijau: koneksi cukup baik</li>
-      <li>Merah: tidak ada koneksi internet</li>
-    </ul>
+    <p>Biru: koneksi bagus</p>
+    <p>Hijau: koneksi cukup baik</p>
+    <p>Merah: tidak ada koneksi internet</p>
   </div>
-  
-  
+
+
+
   <script>
-    // deteksi koneksi internet
-    function checkConnection() {
-      const indicator = document.getElementById('indicator');
-      const online = navigator.onLine;
-  
-      if (online) {
-        const connectionSpeed = navigator.connection.downlink;
-        if (connectionSpeed > 10) {
-          // koneksi bagus
-          indicator.style.backgroundColor = 'blue';
-        } else {
-          // koneksi cukup baik
-          indicator.style.backgroundColor = '#3bff55e1';
+  // deteksi koneksi internet
+  function checkConnection() {
+    const indicator = document.getElementById('indicator');
+    const online = navigator.onLine;
+
+    if (online) {
+      const connectionSpeed = navigator.connection.downlink;
+      if (connectionSpeed > 10) {
+        // koneksi bagus
+        indicator.style.backgroundColor = 'blue';
+      } else {
+        // koneksi cukup baik
+        indicator.style.backgroundColor = '#3bff55e1';
         }
       } else {
         // tidak ada koneksi
         indicator.style.backgroundColor = '#ff3b3ba4';
       }
-    }
-  
-    // panggil fungsi checkConnection() setiap 2 detik
-    setInterval(checkConnection, 2000);
-  
-    // fungsi untuk menampilkan kotak penjelasan
-    function showExplanation() {
-      const explanation = document.getElementById('explanation');
-      explanation.style.display = 'block';
-    }
-  
-    // fungsi untuk menyembunyikan kotak penjelasan
-    function hideExplanation() {
-      const explanation = document.getElementById('explanation');
-      explanation.style.display = 'none';
-    }
-  </script>
+      }
+
+      // panggil fungsi checkConnection() setiap 2 detik
+      setInterval(checkConnection, 2000);
+
+      // fungsi untuk menampilkan kotak penjelasan
+      function showExplanation() {
+        const explanation = document.getElementById('explanation');
+        explanation.style.display = 'block';
+      }
+
+      // fungsi untuk menyembunyikan kotak penjelasan
+      function hideExplanation() {
+        const explanation = document.getElementById('explanation');
+        explanation.style.display = 'none';
+      }
+      </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
