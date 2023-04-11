@@ -78,30 +78,72 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.8);
   z-index: 9999;
-border-radius: 10px;
+  border-radius: 10px;
   padding: 10px;
   max-width: 300px;
-  background-color: #f5f5f5;
+  background-color: #1b1b1bbb;
   font-family: Arial, sans-serif;
   font-size: 14px;
   line-height: 1.5;
-  color: #333;
+  color: #ffffff;
+  animation: pop-up 0.3s ease forwards;
+}
+
+@keyframes pop-up {
+  from {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
 }
 
 
-    #indicator {
-  width: 50px;
-  height: 50px;
+#indicator-container {
+  display: inline-block;
+  position: relative;
+}
+
+#indicator {
+  position: absolute;
+  top: 23%;
+  left: 83%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: white solid 2px;
-  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2), 0 0 3px rgba(0, 0, 0, 0.7);
-  position: relative; /* mengatur posisi elemen secara absolut */
-  top: 50%; /* memindahkan elemen ke pusat vertikal */
-  left: 50%; /* memindahkan elemen ke pusat horizontal */
-  transform: translate(-50%, -50%); /* menggeser elemen ke pusat persis */
+
+  animation: pulse 5s linear infinite;
+  z-index: 1;
 }
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.8;
+  }
+}
+
+
+#indicator:hover {
+  cursor: pointer;
+}
+
+
+
+
 
 /* Ukuran teks saat ditampilkan pada layar HP */
 @media screen and (max-width: 480px) {
@@ -548,6 +590,73 @@ border-radius: 10px;
   </script>
 
   <br><br><br><br><br>
+
+
+
+
+
+  <div id="indicator-container">
+    <div id="indicator" onclick="showExplanation()" onmouseover="showExplanation()" onmouseout="hideExplanation()"></div>
+    <img src="img/jurus.png" alt="">
+  </div>
+  
+  <div id="explanation" style="display:none; border: 1px solid black; padding: 10px;">
+    <p>Indikator ini menunjukkan kecepatan koneksi internet Anda. Jika warna indikator adalah:</p>
+    <ul>
+      <li>Biru: koneksi bagus</li>
+      <li>Hijau: koneksi cukup baik</li>
+      <li>Merah: tidak ada koneksi internet</li>
+    </ul>
+  </div>
+  
+  
+  <script>
+    // deteksi koneksi internet
+    function checkConnection() {
+      const indicator = document.getElementById('indicator');
+      const online = navigator.onLine;
+  
+      if (online) {
+        const connectionSpeed = navigator.connection.downlink;
+        if (connectionSpeed > 10) {
+          // koneksi bagus
+          indicator.style.backgroundColor = 'blue';
+        } else {
+          // koneksi cukup baik
+          indicator.style.backgroundColor = '#3bff55e1';
+        }
+      } else {
+        // tidak ada koneksi
+        indicator.style.backgroundColor = '#ff3b3ba4';
+      }
+    }
+  
+    // panggil fungsi checkConnection() setiap 2 detik
+    setInterval(checkConnection, 2000);
+  
+    // fungsi untuk menampilkan kotak penjelasan
+    function showExplanation() {
+      const explanation = document.getElementById('explanation');
+      explanation.style.display = 'block';
+    }
+  
+    // fungsi untuk menyembunyikan kotak penjelasan
+    function hideExplanation() {
+      const explanation = document.getElementById('explanation');
+      explanation.style.display = 'none';
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
     
   <footer class="new-footer">
     <nav>
@@ -560,7 +669,7 @@ border-radius: 10px;
   </footer>
 
 
-  !
+  
   <script>
     var footer = document.querySelector('.new-footer');
     var lastScrollTop = 0;
@@ -582,55 +691,6 @@ border-radius: 10px;
 
 
 
-
-<div id="indicator" style="margin-right: 10px;" onclick="showExplanation()" onmouseover="showExplanation()" onmouseout="hideExplanation()"></div>
-
-<div id="explanation" style="display:none; border: 1px solid black; padding: 10px;">
-  <p>Indikator ini menunjukkan kecepatan koneksi internet Anda. Jika warna indikator adalah:</p>
-  <ul>
-    <li>Biru: koneksi bagus</li>
-    <li>Hijau: koneksi cukup baik</li>
-    <li>Merah: tidak ada koneksi internet</li>
-  </ul>
-</div>
-
-
-<script>
-  // deteksi koneksi internet
-  function checkConnection() {
-    const indicator = document.getElementById('indicator');
-    const online = navigator.onLine;
-
-    if (online) {
-      const connectionSpeed = navigator.connection.downlink;
-      if (connectionSpeed > 10) {
-        // koneksi bagus
-        indicator.style.backgroundColor = 'blue';
-      } else {
-        // koneksi cukup baik
-        indicator.style.backgroundColor = 'green';
-      }
-    } else {
-      // tidak ada koneksi
-      indicator.style.backgroundColor = 'red';
-    }
-  }
-
-  // panggil fungsi checkConnection() setiap 2 detik
-  setInterval(checkConnection, 2000);
-
-  // fungsi untuk menampilkan kotak penjelasan
-  function showExplanation() {
-    const explanation = document.getElementById('explanation');
-    explanation.style.display = 'block';
-  }
-
-  // fungsi untuk menyembunyikan kotak penjelasan
-  function hideExplanation() {
-    const explanation = document.getElementById('explanation');
-    explanation.style.display = 'none';
-  }
-</script>
 
 
 
