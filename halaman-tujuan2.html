@@ -355,6 +355,34 @@
 	font-family: Viga;
 }
  
+.menu-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.menu-option {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #108ec4;
+  color: #fff;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.menu-option.active {
+  background-color: #63d0ff;
+
+}
+
+.menu-content {
+  display: none;
+}
+
+.menu-content.active {
+  display: block;
+}
 
     </style>
 
@@ -392,57 +420,79 @@
             }
         };
     </script>
-
-
-
-
     <div class="title-container">
         <h1 class="title">Catatan conter<i class="fa-solid fa-store"
                 style="font-size: 40px; margin-left: 10px; color: rgb(0, 145, 255);"></i></h1>
     </div><br>
     
 
-    <br>
+    
+<div class="menu-container">
+    <div class="menu-option active" data-menu="menu-1">Stok saldo</div>
+    <div class="menu-option" data-menu="menu-2">Data penjualan</div>
+  </div>
+  
+  <div id="menu-1" class="menu-content active">
+    <div class="container-b">
+        <div class="outside-box">STOK SALDO</div>
+        <form id="saldo-bank-form">
+            <label for="saldo-name-input">Nama Saldo:</label>
+            <input type="text" id="saldo-name-input" required>
+            <label for="saldo-bank-input">Stok Saldo:</label>
+            <input type="number" id="saldo-bank-input" required placeholder="Rp">
+            <button  type="submit">Tambah</button>
+        </form>
+    </div>
+  </div>
+  
+  <div id="menu-2" class="menu-content">
+    <div class="container-b">
 
-    <button type="button" id="show-form-btn" style="font-size: 30px;">Isi Data Table</button>
+        <div class="outside-box">DATA PENJUALAN</div>
+        <form id="transaksi-form">
+            <label for="transaksi-input">Nama Transaksi:</label>
+            <input type="text" id="nama-transaksi-input" required>
+            <label for="transaksi-input">Total Uang Transaksi:</label>
+            <input type="number" id="transaksi-input" required placeholder="Rp">
+            <label for="harga-input">Harga Jual:</label>
+            <input type="number" id="harga-input" required placeholder="Rp">
+            <button type="submit">Tambah</button>
+        </form>
+    </div>
+  </div>
+  <script>
+    // Ambil semua elemen menu option dan menu content
+const menuOptions = document.querySelectorAll('.menu-option');
+const menuContents = document.querySelectorAll('.menu-content');
 
-    <div id="form-container" style="display:none;"><br>
-        <div class="container-b">
-            <div class="outside-box">STOK SALDO</div>
-            <form id="saldo-bank-form">
-                <label for="saldo-name-input">Nama Saldo:</label>
-                <input type="text" id="saldo-name-input" required>
-                <label for="saldo-bank-input">Stok Saldo:</label>
-                <input type="number" id="saldo-bank-input" required placeholder="Rp">
-                <button  type="submit">Tambah</button>
-            </form>
-        </div><br><br>
-        <div class="container-b">
+// Tambahkan event listener pada setiap menu option
+menuOptions.forEach((option) => {
+  option.addEventListener('click', () => {
+    // Ambil menu yang dipilih
+    const selectedMenu = option.getAttribute('data-menu');
+    
+    // Hapus kelas active dari semua menu option dan menu content
+    menuOptions.forEach((option) => {
+      option.classList.remove('active');
+    });
+    menuContents.forEach((content) => {
+      content.classList.remove('active');
+    });
+    
+    // Tambahkan kelas active pada menu option dan menu content yang dipilih
+    option.classList.add('active');
+    const selectedContent = document.getElementById(selectedMenu);
+    selectedContent.classList.add('active');
+  });
+});
 
-            <div class="outside-box">DATA PENJUALAN</div>
-            <form id="transaksi-form">
-                <label for="transaksi-input">Nama Transaksi:</label>
-                <input type="text" id="nama-transaksi-input" required>
-                <label for="transaksi-input">Total Uang Transaksi:</label>
-                <input type="number" id="transaksi-input" required placeholder="Rp">
-                <label for="harga-input">Harga Jual:</label>
-                <input type="number" id="harga-input" required placeholder="Rp">
-                <button type="submit">Tambah</button>
-            </form>
-        </div>
-    </div><br>
+  </script>
 
-    <script>
-        const showFormBtn = document.getElementById("show-form-btn");
-        const formContainer = document.getElementById("form-container");
-        showFormBtn.addEventListener("click", function () {
-            if (formContainer.style.display === "block") {
-                formContainer.style.display = "none";
-            } else {
-                formContainer.style.display = "block";
-            }
-        });
-    </script>
+
+
+
+
+
 
     <div class="container">
        

@@ -2194,24 +2194,29 @@ height: 70px;
   }
 }
 
-
 .popup-box {
   position: fixed;
   bottom: 10px;
-  right: -200px; /* memulai posisi box di luar layar */
+  right: -200px;
 
   background-color: rgba(0, 0, 0, 0.528);
   color: #fff;
   padding: 10px;
-  border-radius: 10%; /* membuat box menjadi bulat */
+  border-radius: 10%;
   animation: fadeIn 0.5s ease-out forwards;
+
+  /* menentukan nilai z-index */
+  z-index: 2;
 }
 
 .popup-box.show {
   right: 10px;
- 
 }
 
+.other-element {
+  position: relative;
+  z-index: 1;
+}
 
 
 
@@ -2373,7 +2378,7 @@ label[for="full-mode-toggle"] {
 }
 
 [data-theme="color2"] {
-  --background-color: #000000;
+  --background-color: #355f82;
   --text-color: #ffffff;
 }
 
@@ -3200,14 +3205,12 @@ input[type="file"] {
 
 
 
-
 .new-footer {
   background-color: #ffffff;
   color: #0f93ff;
   padding: 5px;
   position: fixed;
   bottom: 0;
-
   width: 100%;
   height: 47px;
   transition: all 0.6s ease-out;
@@ -3217,15 +3220,12 @@ input[type="file"] {
 .new-footer.hidden {
   opacity: 0;
   transform: translateY(40px);
-  
+      
 }
-
-
 
 .new-footer nav ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin: 0;  padding: 0;
   display: flex;
   justify-content: center;
 
@@ -3233,24 +3233,18 @@ input[type="file"] {
 
 .new-footer nav li {
   margin-right: 60px;
-
 }
 
 .new-footer nav li:last-child {
   margin-right: 0;
-
 }
 
 .new-footer nav a.menu-1 {
   color: #5e93ff;
-
   text-decoration: none;
- font-size: 10px;
-
+  font-size: 10px;
   transition: color 0.2s ease-in-out;
-
 }
-
 .new-footer nav a.menu-1:hover {
   color: rgb(16, 76, 108);
 }
@@ -3260,6 +3254,31 @@ input[type="file"] {
   right: 0;
   margin-right: 8px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3333,4 +3352,9 @@ input[type="file"] {
   color: #fff;
   border: 1px solid #007bff;
   border-radius: 4px;
-}
+  }
+
+
+
+
+

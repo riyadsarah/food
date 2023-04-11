@@ -22,8 +22,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <style>
 body {
-  background: url('img/back.jpeg') no-repeat center center fixed;
-  background-size: cover;
+  background-image: linear-gradient(to right, #009999 0, #059bff 0);
+  background: cover;
 
 
 }
@@ -60,10 +60,72 @@ body {
 }
 
 
+.added {
+			background-color: yellow;
+		}
+
+		.removed {
+			background-color: red;
+		}
+
+		.same {
+			background-color: green;
+		}
+
+
+    #explanation {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+border-radius: 10px;
+  padding: 10px;
+  max-width: 300px;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+
+    #indicator {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: white solid 2px;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2), 0 0 3px rgba(0, 0, 0, 0.7);
+  position: relative; /* mengatur posisi elemen secara absolut */
+  top: 50%; /* memindahkan elemen ke pusat vertikal */
+  left: 50%; /* memindahkan elemen ke pusat horizontal */
+  transform: translate(-50%, -50%); /* menggeser elemen ke pusat persis */
+}
+
+/* Ukuran teks saat ditampilkan pada layar HP */
+@media screen and (max-width: 480px) {
+  .product-title {
+    font-size: 12px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
 
     </style>
 </head>
 <body>
+
+
+  
  
 <div class="title-container" style="margin-left: 70px;margin-right: 70px; ">
     <p id="judulProduk" style="color: aliceblue;">Delivery</p>
@@ -123,7 +185,12 @@ body {
 
       <div class="card-88">
         <div style="position: relative;">
-          <img src="img/seblak lumpia.jpeg" alt="Menu Item 1">
+          <a href="img/seblak lumpia.jpeg"data-lightbox="product">
+            <img src="img/seblak lumpia.jpeg" alt="product">
+          </a>
+        
+
+
           <div id="total-price1"
             style="position: absolute; top: 0; right: 0; background-color: rgba(255, 255, 255, 0.894); color: #000000; padding: 5px; border-radius: 2px;font-size: 15px; ">
             Rp 10.000</div>
@@ -156,10 +223,16 @@ body {
           <a href="img/baso ikan.jpeg"data-lightbox="product">
           <img src="img/baso ikan.jpeg" alt="product">
         </a>
+      
+        
+        
+      
           <div id="total-price2"
             style="position: absolute; top: 0; right: 0; background-color: rgba(255, 255, 255, 0.894); color: #000000; padding: 5px;font-size: 15px;">
             Rp 10.000</div>
-        </div>
+        
+       </div>
+
         <div class="discounted-price" style="color: #ff0101;">Baso ikan</div>
 
         <div class="card-description" style="height: 100px; margin-left: 10px; margin-right: 10px;">
@@ -189,6 +262,7 @@ body {
           <a href="img/pastel ayam.jpeg"data-lightbox="product">
           <img src="img/pastel ayam.jpeg" alt="product">
         </a>
+   
           <div id="total-price3"
             style="position: absolute; top: 0; right: 0; background-color: rgba(355, 355, 355, 0.894); color: #000000; padding: 5px;font-size: 15px;">
             Rp 10.000</div>
@@ -222,6 +296,7 @@ body {
           <a href="img/es coklat.JPG"data-lightbox="product">
           <img src="img/es coklat.JPG" alt="product">
         </a>
+    
           <div id="total-price4"
             style="position: absolute; top: 0; right: 0; background-color: rgba(455, 455, 455, 0.894); color: #000000; padding: 5px;font-size: 15px;">
             Rp 7.000</div>
@@ -483,6 +558,9 @@ body {
       </ul>
     </nav>
   </footer>
+
+
+  !
   <script>
     var footer = document.querySelector('.new-footer');
     var lastScrollTop = 0;
@@ -498,7 +576,6 @@ body {
     });
     
     </script>
-    
 
 
 
@@ -506,41 +583,64 @@ body {
 
 
 
+<div id="indicator" style="margin-right: 10px;" onclick="showExplanation()" onmouseover="showExplanation()" onmouseout="hideExplanation()"></div>
+
+<div id="explanation" style="display:none; border: 1px solid black; padding: 10px;">
+  <p>Indikator ini menunjukkan kecepatan koneksi internet Anda. Jika warna indikator adalah:</p>
+  <ul>
+    <li>Biru: koneksi bagus</li>
+    <li>Hijau: koneksi cukup baik</li>
+    <li>Merah: tidak ada koneksi internet</li>
+  </ul>
+</div>
+
+
+<script>
+  // deteksi koneksi internet
+  function checkConnection() {
+    const indicator = document.getElementById('indicator');
+    const online = navigator.onLine;
+
+    if (online) {
+      const connectionSpeed = navigator.connection.downlink;
+      if (connectionSpeed > 10) {
+        // koneksi bagus
+        indicator.style.backgroundColor = 'blue';
+      } else {
+        // koneksi cukup baik
+        indicator.style.backgroundColor = 'green';
+      }
+    } else {
+      // tidak ada koneksi
+      indicator.style.backgroundColor = 'red';
+    }
+  }
+
+  // panggil fungsi checkConnection() setiap 2 detik
+  setInterval(checkConnection, 2000);
+
+  // fungsi untuk menampilkan kotak penjelasan
+  function showExplanation() {
+    const explanation = document.getElementById('explanation');
+    explanation.style.display = 'block';
+  }
+
+  // fungsi untuk menyembunyikan kotak penjelasan
+  function hideExplanation() {
+    const explanation = document.getElementById('explanation');
+    explanation.style.display = 'none';
+  }
+</script>
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
+<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
 
 
 </body>
