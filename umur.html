@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="img/png5.img.png" sizes="32x32">
+    <link rel="stylesheet" href="fontawesome-free-6.2.1-web/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Viga&display=swap" rel="stylesheet">
+<style>
+
+
+* {
+
+    font-family: Viga;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-label {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    border-bottom: 1px solid #d6d4d4;
+    outline: none;
+    font-size: 16px;
+    transition: all 0.2s ease-in-out;
+}
+
+.input-field:focus+.input-label,
+.input-field:not(:placeholder-shown)+.input-label {
+    font-size: 12px;
+    width: 70px;
+    text-align: center;
+    top: 0;
+    color: #ffffff;
+    background-color: #00b7ff;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.130);
+    border-radius: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+</head>
+
+<body>
+
+
+
+
+    <div style="display: flex; flex-direction: column; align-items: center; padding: 20px; background-color: #f1f1f1;">
+
+        <h1style="text-align: center; font-size: 36px; font-weight: bold; margin-bottom: 20px; color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.575);">
+            Hitung Umur</h1>
+            <div class="input-container">
+                <input type="number" id="tanggal-lahir" class="input-field">
+                <label for="tanggal-lahir" class="input-label">Tanggal</label>
+            </div>
+
+            <div class="input-container">
+                <input type="number" id="bulan-lahir" class="input-field">
+                <label for="bulan-lahir" class="input-label">Bulan</label>
+            </div>
+
+            <div class="input-container">
+                <input type="number" id="tahun-lahir" class="input-field">
+                <label for="tahun-lahir" class="input-label">Tahun</label>
+            </div>
+
+
+            <div style="display: flex; flex-direction: row;">
+                <button type="button11" onclick="hitungUmur()"
+                    style="margin-right: 10px; padding: 10px; border-radius: 5px; border: none; background-color: #4CAF50; color: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);">Hitung</button>
+            </div>
+            <div style="display: inline-block; margin: 20px;">
+                <button type="button" onclick="resetRiwayat()"
+                    style="padding: 10px; border-radius: 5px; border: none; background-color: #f44336; color: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);">
+                    <iclass="fas fa-undo"></i> Reload
+                </button>
+                <button type="button" onclick="salinTeks()"
+                    style="padding: 10px; border-radius: 5px; border: none; background-color: #2196F3; color: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);">
+                    <iclass="fa fa-copy"></i> Salin
+                </button>
+                <button type="button" onclick="bagikanTeks()"
+                    style="padding: 10px; border-radius: 5px; border: none; background-color: #FF9800; color: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);"><i
+                        class="fa fa-share"></i> Share</button>
+            </div>
+            <div id="output" style="text-align: center; margin: 20px;"></div>
+    </div>
+
+
+
+
+
+    <script>
+        function hitungUmur() {
+            var tanggalLahir = parseInt(document.getElementById("tanggal-lahir").value);
+            var bulanLahir = parseInt(document.getElementById("bulan-lahir").value);
+            var tahunLahir = parseInt(document.getElementById("tahun-lahir").value);
+            var sekarang = new Date();
+            var tanggalSekarang = sekarang.getDate();
+            var bulanSekarang = sekarang.getMonth() + 1;
+            var tahunSekarang = sekarang.getFullYear();
+            var umurTahun = tahunSekarang - tahunLahir;
+            var umurBulan = bulanSekarang - bulanLahir;
+            var umurTanggal = tanggalSekarang - tanggalLahir;
+            if (umurBulan < 0) {
+                umurTahun--;
+                umurBulan = 12 + umurBulan;
+            }
+            if (umurTanggal < 0) {
+                var bulanSekarangSebelumnya = bulanSekarang - 1;
+                var jumlahHariBulanSekarangSebelumnya = new Date(tahunSekarang, bulanSekarangSebelumnya, 0).getDate();
+                umurBulan--;
+                umurTanggal = jumlahHariBulanSekarangSebelumnya + umurTanggal;
+                }
+                totalMenit = umurTahun * 525600 + umurBulan * 43800 + umurTanggal * 1440;
+                totalDetik = totalMenit * 60;
+                var totalJam = umurTahun * 365 * 24;
+                var panjangRambut = umurTahun * 15;
+                var panjangKuku = umurTahun * 3 * 12;
+                var totalMenit = umurTahun * 525600 + umurBulan * 43800 + umurTanggal * 1440;
+                var totalDetik = totalMenit * 60;
+                var waktuTidur = umurTahun * 365 * 8 * 3600;
+                var totalMilidetik = totalDetik * 1000;
+                var totalMikrodetik = totalMilidetik * 1000;
+                var totalNanodetik = totalMikrodetik * 1000;
+
+                // Penghitungan tanggal ulang tahun
+                var tanggalUlangTahun = tanggalLahir;
+                var bulanUlangTahun = bulanLahir;
+                var tahunUlangTahun = tahunSekarang;
+
+                if (bulanLahir < bulanSekarang || (bulanLahir == bulanSekarang && tanggalLahir <= tanggalSekarang)) {
+                    tahunUlangTahun = tahunSekarang + 1;
+                    }
+                    // Penghitungan hari sampai ulang tahun
+                    var tanggalSampaiUlangTahun = new Date(tahunUlangTahun, bulanUlangTahun - 1, tanggalUlangTahun);
+                    var selisihHari = (tanggalSampaiUlangTahun - sekarang) / (24 * 60 * 60 * 1000);
+                    var sisaHari = Math.ceil(selisihHari);
+
+                    totalDetik += waktuTidur;
+
+
+
+
+
+                    var text =
+
+                    `
+
+
+                    <p>Umur Anda Sekarang adalah ${umurTahun} tahun ${umurBulan} bulan ${umurTanggal} hari.</p>
+
+                    <p>Tinggal ${sisaHari} hari lagi menuju ulang tahun Anda.</p>
+                    <p>Atau anda telah hidup selama:</p>
+
+                    <p> ● ${totalJam} Jam</p>
+                    <p> ● ${totalMenit} Menit</p>
+                    <p> ● ${totalDetik} Detik</p>
+                    <p> ● ${totalMilidetik} Milidetik</p>
+                    <p> ● ${totalMikrodetik} Mikrodetik</p>
+                    <p> ● ${totalNanodetik} Nanodetik</p>
+
+                    <p>Jika anda tidur 8 jam sehari total waktu tidur adalah ${waktuTidur / 3600} jam.</p>
+                    <p>Jika rambut Anda tidak dipotong, panjang rambut Anda sekarang sekitar ${panjangRambut} cm.</p>
+                    <p>Jika kuku Anda tidak dipotong, panjang kuku Anda sekarang sekitar ${panjangKuku} mm.</p>
+                    <p>Sumber: Rambut tumbuh sekitar 0,3–0.4mm per hari atau 15cm per tahun. Kuku tangan tumbuh sekitar 0,1mm per hari atau 3mm per bulan (American Academy of Dermatology)</p>
+                    <br>
+                    `;
+                    document.getElementById("output").innerHTML = text;
+
+
+                    // Ambil elemen output
+                    var outputDiv = document.getElementById("output");
+
+
+
+                    // Bersihkan output sebelumnya
+                    outputDiv.innerHTML = '';
+                    // Tampilkan teks ke output satu karakter per interval 10ms
+                    var i = 0;
+                    var intervalId = setInterval(function () {
+                        var char = text.charAt(i);
+                        var color = '';
+                        var size = '';
+                        if (/\d/.test(char)) {
+                            // Jika karakter adalah angka, berikan warna merah
+                            color = '#00ff08';
+                        } else if (!/[a-zA-Z0-9\s]/.test(char)) {
+                            // Jika karakter bukan huruf, angka, atau spasi, berikan warna hijau dan tambahkan CSS untuk memperbesar teks
+                            color = '#00eeff';
+
+                        }
+                        // Cari kalimat "Ini adalah kalimat penting"
+                        var pattern = /sisaHari(.+?)([.?!]|$)/g;
+                        var match = pattern.exec(text.substring(0, i + 1));
+                        if (match) {
+                            var start = match.index;
+                            var end = start + match[0].length - 1;
+                            if (i >= start && i <= end) {
+                                color = 'red';
+                            }
+                        }
+
+                        if (text.substring(i, i + 3) === '<p>') {
+                            // Jika karakter saat ini adalah tag pembuka <p>, tambahkan paragraf baru
+                                outputDiv.appendChild(document.createElement('p'));
+                                i += 2; // lewati karakter '<' dan 'p'
+                            } else if (text.substring(i, i + 4) === '</p>') {
+                                // Jika karakter saat ini adalah tag penutup </p>, tambahkan paragraf baru
+                                outputDiv.appendChild(document.createElement('p'));
+                                i += 3; // lewati karakter '<', '/', 'p'
+                            } else if (text.substring(i, i + 4) === '<br>') {
+                                // Jika karakter saat ini adalah tag pembuka <br>, tambahkan spasi ke bawah
+                                outputDiv.appendChild(document.createElement('br'));
+                                i += 3; // lewati karakter '<', 'b', 'r'
+                            } else if (text.substring(i, i + 5) === '</br>') {
+                                // Jika karakter saat ini adalah tag penutup </br>, tambahkan spasi ke bawah
+                                outputDiv.appendChild(document.createElement('br'));
+                                i += 4; // lewati karakter '<', '/', 'b', 'r'
+                            } else {
+                                // Jika karakter biasa, tambahkan ke dalam elemen output
+                                var span = document.createElement('span');
+                                span.textContent = char;
+                                span.style.color = color;
+                                span.style.fontSize = size;
+                                outputDiv.appendChild(span);
+                            }
+
+                            // Geser scroll output ke bawah setiap kali ada penambahan karakter baru
+                            outputDiv.scrollTop = outputDiv.scrollHeight;
+
+                            i++;
+
+                            // Hentikan interval ketika semua karakter telah ditampilkan
+                            if (i >= text.length) {
+                                clearInterval(intervalId);
+                                }
+                            }, 20);
+
+
+
+
+                        }
+
+                        function resetRiwayat() {
+                            document.getElementById("tanggal-lahir").value = "";
+                            document.getElementById("bulan-lahir").value = "";
+                            document.getElementById("tahun-lahir").value = "";
+                            document.getElementById("output").innerHTML = "";
+                        }
+
+                        function salinTeks() {
+                            const output = document.getElementById("output");
+                            const range = document.createRange();
+                            range.selectNode(output);
+                            const selection = window.getSelection();
+                            selection.removeAllRanges();
+                            selection.addRange(range);
+                            document.execCommand("copy");
+                            navigator.vibrate(100); // Menambahkan getar selama 100ms
+                        }
+
+                        function bagikanTeks() {
+                            const output = document.getElementById("output").textContent;
+                            const encodedText = encodeURIComponent(output);
+                            const shareUrl = `whatsapp://send?text=${encodedText}`;
+                            window.location.href = shareUrl;
+                        }
+                        document.addEventListener("keyup", function (event) {
+                            if (event.code === "Enter") {
+                                hitungUmur();
+                                }
+                            });
+                            </script>
+
+
+                         
+            }
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
