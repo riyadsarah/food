@@ -1,88 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        /* Style untuk card */
-        .card {
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-          max-width: 300px;
-          margin: auto;
-          text-align: center;
-          font-family: arial;
-          background-color: #fff;
-        }
-  
-        /* Style untuk gambar situs */
-        .card img {
-          max-width: 100%;
-          height: auto;
-        }
-  
-        /* Style untuk keterangan situs */
-        .container {
-          padding: 2px 16px;
-        }
-  
-        .container h4 {
-          font-size: 18px;
-          color: #333;
-        }
-  
-        .container p {
-          font-size: 16px;
-          color: #777;
-        }
-      </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="fontawesome-free-6.2.1-web/css/all.css">
+  <style>
+
+.title-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+
+.title {
+  display: inline-block;
+  font-size: 40px;
+  font-weight: bold;
+  color: rgb(0, 179, 255);
+}
+
+
+.fa-lock {
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+#input-textju {
+  width: 80%;
+  height: 200px;
+  margin: 20px 10%;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #F2F2F2;
+}
+
+
+button {
+  font-size: 20px;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  background-color: rgb(0, 179, 255);
+  cursor: pointer;
+}
+
+
+button:active {
+  background-color: #05668D;
+}
+
+
+button:first-child {
+  background-color: #E74C3C;
+}
+
+div > button:not(:first-child) {
+  background-color: #2ECC71;
+}
+
+
+button i {
+  font-size: 20px;
+}
+
+
+#output-textju {
+  width: 80%;
+  height: 200px;
+  margin: 20px 10%;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #F2F2F2;
+}
+
+  </style>
 </head>
 <body>
-    
-<h1>Cek Kuota IM3</h1>
+  <div class="title-container">
+    <h1 class="title">Code Binary<i class="fa-solid fa-lock"
+        style="font-size: 40px; margin-left: 10px; color: rgb(0, 179, 255);"></i></h1>
+  </div>
+  <textarea id="input-textju" placeholder="Enter text here"></textarea>
+  <button type="button" id="convert-to-binary" onclick="convertToBinary()">Convert to Binary</button>
+  <button type="button" id="convert-to-text" onclick="convertToText()">Convert to Text</button><br><br>
+  <div>
+    <button type="button" onclick="resetTextArea()"><i class="fas fa-undo"></i></button>
+    <button type="button" onclick="salinTeks200()"><i class="fa fa-copy"></i></button>
+    <button type="button" onclick="bagikanTeks200()"><i class="fa fa-share"></i></button>
+  </div>
+  <br><br>
+  <textarea id="output-textju" placeholder="Binary code or text will appear here" readonly></textarea>
 
-<form>
-  <label for="phone">Nomor Handphone:</label>
-  <input type="tel" id="phone" name="phone" pattern="[0-9]{10,12}" required>
-
-  <button type="button" onclick="checkKuota()">Cek Kuota</button>
-</form>
-
-<div id="result"></div>
-
-<script>
-  function checkKuota() {
-    var phone = document.getElementById("phone").value;
-
-    // Mengirim request ke API untuk mendapatkan informasi kuota
-    $.ajax({
-      url: "https://api.im3ooredoo.com.my/webapi/api/Personal/CheckAccountQuota",
-      type: "POST",
-      dataType: "json",
-      data: {
-        PhoneNumber: phone
-      },
-      success: function(response) {
-        // Menampilkan informasi kuota pada halaman
-        var result = document.getElementById("result");
-        result.innerHTML = "<h2>Informasi Kuota</h2>";
-        result.innerHTML += "<p>Nomor HP: " + response.accountQuota.phoneNumber + "</p>";
-        result.innerHTML += "<p>Kuota Utama: " + response.accountQuota.quotaData[0].quotaValue + " " + response.accountQuota.quotaData[0].quotaUnit + "</p>";
-        result.innerHTML += "<p>Kuota Bonus: " + response.accountQuota.quotaData[1].quotaValue + " " + response.accountQuota.quotaData[1].quotaUnit + "</p>";
-      },
-      error: function() {
-        // Menampilkan pesan error jika terjadi kesalahan pada saat mengambil informasi kuota
-        var result = document.getElementById("result");
-        result.innerHTML = "<p>Terjadi kesalahan pada saat mengambil informasi kuota. Silakan coba lagi nanti.</p>";
+  <script>
+    function convertToBinary() {
+      var inputText = document.getElementById('input-textju').value;
+      var binaryCode = '';
+      for (var i = 0; i < inputText.length; i++) {
+        var charCode = inputText.charCodeAt(i).toString(2);
+        while (charCode.length < 8) {
+          charCode = '0' + charCode;
+        }
+        binaryCode += charCode + ' ';
       }
-    });
-  }
-</script>
+      document.getElementById('output-textju').value = binaryCode.trim();
+      document.getElementById('output-textju').style.display = 'block';
+    }
 
+    function convertToText() {
+      var inputBinary = document.getElementById('input-textju').value.replace(/\s/g, '');
+      var text = '';
+      for (var i = 0; i < inputBinary.length; i += 8) {
+        var charCode = parseInt(inputBinary.substr(i, 8), 2);
+        text += String.fromCharCode(charCode);
+      }
+      document.getElementById('output-textju').value = text;
+      document.getElementById('output-textju').style.display = 'block';
+    }
 
+    function resetTextArea() {
+      document.getElementById('input-textju').value = '';
+      document.getElementById('output-textju').value = '';
+      document.getElementById('output-textju').style.display = 'none';
+    }
 
-    
+    function salinTeks200() {
+      const outputText = document.getElementById("output-textju");
+      const range = document.createRange();
+      range.selectNode(outputText);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      document.execCommand("copy");
+      navigator.vibrate(100); // Menambahkan getar selama 100ms
+    }
+
+    function bagikanTeks200() {
+      const outputText = document.getElementById("output-textju").value;
+      const encodedText = encodeURIComponent(outputText);
+      const shareUrl = `whatsapp://send?text=${encodedText}`;
+      window.location.href = shareUrl;
+    }
+  </script>
 </body>
 </html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Input Nilai</title>
+    <style>
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Input Nilai</h1>
+    <form action="/" method="POST">
+        <label for="nilai">Masukkan nilai ujian:</label>
+        <input type="text" name="nilai" id="nilai">
+        <div id="error-message" class="error-message" style="display: none;">Masukkan angka yang valid!</div>
+        <br>
+        <label for="tanggal_lahir">Masukkan tanggal lahir:</label>
+        <input type="date" name="tanggal_lahir" id="tanggal_lahir">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    
+    {% if grade and keterangan %}
+        <h2>Hasil Perhitungan</h2>
+        <p>Grade: {{ grade }}</p>
+        <p>Keterangan: {{ keterangan }}</p>
+    {% endif %}
+
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const inputNilai = document.getElementById('nilai');
+            const errorMessage = document.getElementById('error-message');
+
+            inputNilai.addEventListener('input', () => {
+                const nilai = inputNilai.value.trim();
+
+                if (nilai === '') {
+                    errorMessage.style.display = 'none';
+                } else if (isNaN(nilai)) {
+                    errorMessage.style.display = 'block';
+                } else {
+                    errorMessage.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

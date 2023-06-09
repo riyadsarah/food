@@ -335,8 +335,27 @@
 
 
                          
-            }
+<h1>Find My Phone</h1>
+<form>
+    <label for="phone-number">Nomor Handphone:</label>
+    <input type="tel" id="phone-number" name="phone-number" required>
+    <button type="button" onclick="findMyPhone()">Temukan Saya</button>
+</form>
 
+<script>
+    function findMyPhone() {
+        const phoneNumber = document.getElementById("phone-number").value;
+        const encodedPhoneNumber = encodeURIComponent(phoneNumber);
+        const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodedPhoneNumber}`;
+        window.open(mapUrl, '_blank');
+        const phoneCallUrl = `tel:${phoneNumber}`;
+        window.location.href = phoneCallUrl;
+        setTimeout(function(){
+            const message = "Anda berhasil membunyikan ponsel Anda!";
+            alert(message);
+        }, 1000); // delay 1 detik sebelum alert muncul
+    }
+</script>
 
 
 

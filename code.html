@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="img/png5.img.png" sizes="32x32">
+    <link rel="stylesheet" href="fontawesome-free-6.2.1-web/css/all.css">
+    <style>
+        .title-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .title {
+            display: inline-block;
+            font-size: 40px;
+            font-weight: bold;
+            color: #00B3FF;
+        }
+
+        .fa-lock {
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        #input-textju {
+            width: 80%;
+            height: 30px;
+            margin: 20px 10%;
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 10px;
+
+        }
+
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            background-color: #00B3FF;
+            cursor: pointer;
+        }
+
+        button:active {
+            background-color: #05668D;
+        }
+
+
+
+        button i {
+            font-size: 20px;
+        }
+
+        #output-textju {
+            width: 80%;
+            height: 100px;
+            margin: 20px 10%;
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 10px;
+            border: none;
+            background-color: #F2F2F2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="title-container">
+        <h1 class="title">Code Binary<i class="fa-solid fa-lock"
+                style="font-size: 40px; margin-left: 10px; color: rgb(0, 179, 255);"></i></h1>
+    </div>
+    <div style="text-align: center;">
+        <textarea id="input-textju" placeholder="Enter text here"></textarea>
+        <button type="button" id="convert-to-binary" onclick="convertToBinary()">Convert to Binary</button>
+        <button type="button" id="convert-to-text" onclick="convertToText()">Convert to Text</button><br><br>
+
+        <textarea id="output-textju" readonly></textarea>
+
+        <button type="button" onclick="resetTextArea()"><i class="fas fa-undo"></i> Reset</button>
+        <button type="button" onclick="salinTeks200()"><i class="fa fa-copy"></i> Salin</button>
+        <button type="button" onclick="bagikanTeks200()"><i class="fa fa-share"></i> Share</button>
+    </div>
+    <br><br>
+
+    <script>
+    function convertToBinary() {
+    var inputText = document.getElementById('input-textju').value;
+    var binaryCode = '';
+    for (var i = 0; i < inputText.length; i++) {
+    var charCode = inputText.charCodeAt(i).toString(2);
+    while (charCode.length < 8) {
+    charCode = '0' + charCode;
+    }
+    binaryCode += charCode + ' ';
+}
+document.getElementById('output-textju').value = binaryCode.trim();
+document.getElementById('output-textju').style.display = 'block';
+}
+
+function convertToText() {
+    var inputBinary = document.getElementById('input-textju').value.replace(/\s/g, '');
+    var text = '';
+    for (var i = 0; i < inputBinary.length; i += 8) {
+    var charCode = parseInt(inputBinary.substr(i, 8), 2);
+    text += String.fromCharCode(charCode);
+    }
+    document.getElementById('output-textju').value = text;
+    document.getElementById('output-textju').style.display = 'block';
+    }
+
+    function resetTextArea() {
+        document.getElementById('input-textju').value = '';
+        document.getElementById('output-textju').value = '';
+
+        }
+
+        function salinTeks200() {
+        const outputText = document.getElementById("output-textju");
+        const range = document.createRange();
+        range.selectNode(outputText);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand("copy");
+        navigator.vibrate(100); // Menambahkan getar selama 100ms
+        }
+
+        function bagikanTeks200() {
+        const outputText = document.getElementById("output-textju").value;
+        const encodedText = encodeURIComponent(outputText);
+        const shareUrl = `whatsapp://send?text=${encodedText}`;
+        window.location.href = shareUrl;
+        }
+        </script>
+   
+    
+</body>
+
+</html>
