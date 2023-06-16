@@ -178,53 +178,43 @@
       }
     }
 
-function searchNotes() {
-  // ...
-  notes.forEach(function (note, index) {
-    // ...
-    var noteDiv = document.createElement('div'); // Mengganti <pre> dengan <div>
-    noteDiv.classList.add('note');
+    // Fungsi untuk mencari catatan saat input pencarian berubah
+    function searchNotes() {
+      var searchText = document.getElementById('searchInput').value.trim().toLowerCase();
+      var notes = JSON.parse(localStorage.getItem('notes'));
+      var noteList = document.getElementById('noteList');
+      noteList.innerHTML = '';
 
-    var buttonContainer = document.createElement('div'); // Membuat kontainer untuk tombol-tombol
-    buttonContainer.classList.add('btn-container');
+      if (notes !== null) {
+        var regex = new RegExp('(' + searchText + ')', 'gi');
 
-    var copyButton = document.createElement('button');
-    copyButton.classList.add('btn');
-    copyButton.innerText = 'Copy';
-    copyButton.addEventListener('click', function () {
-      copyToClipboard(index);
-    });
+        notes.forEach(function (note, index) {
+          var title = note.title.toLowerCase();
+          var content = note.content.toLowerCase();
 
-    var editButton = document.createElement('button');
-    editButton.classList.add('btn');
-    editButton.innerText = 'Edit';
-    editButton.addEventListener('click', function () {
-      editNote(index);
-    });
+          if (title.includes(searchText) || content.includes(searchText)) {
+            var noteDiv = document.createElement('pre');
+            noteDiv.classList.add('note');
 
-    var deleteButton = document.createElement('button');
-    deleteButton.classList.add('btn');
-    deleteButton.innerText = 'Hapus';
-    deleteButton.addEventListener('click', function () {
-      deleteNote(index);
-    });
+            var highlightedTitle = highlightText(note.title, searchText);
+            var highlightedContent = highlightText(note.content, searchText);
 
-    buttonContainer.appendChild(copyButton);
-    buttonContainer.appendChild(editButton);
-    buttonContainer.appendChild(deleteButton);
+            noteDiv.innerHTML = `
+              <h3>${highlightedTitle}</h3>
+              <p>${highlightedContent}</p>
+              <button class="btn" onclick="copyToClipboard(${index})">Copy</button>
+              <button class="btn" onclick="editNote(${index})">Edit</button>
+              <button class="btn" onclick="deleteNote(${index})">Hapus</button>
+            `;
 
-    noteDiv.innerHTML = `
-      <h3>${highlightedTitle}</h3>
-      <p>${highlightedContent}</p>
-    `;
+            noteList.appendChild(noteDiv);
 
-    noteDiv.appendChild(buttonContainer); // Menambahkan kontainer tombol ke dalam catatan
-
-    noteList.appendChild(noteDiv);
-  });
-  // ...
-}
-
+            // Memindahkan fokus ke catatan yang cocok dengan pencarian
+            noteDiv.scrollIntoView();
+          }
+        });
+      }
+    }
 
     // Fungsi untuk menghapus catatan
     function deleteNote(index) {
