@@ -1,90 +1,137 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>10FastFingers</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+  <title>Catatan Pribadi</title>
+  <style>
+    .note {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+    }
 
-        h1 {
-            margin-top: 50px;
-        }
+    .highlight {
+      background-color: yellow;
+    }
 
-        #text-container {
-            margin-top: 50px;
-            font-size: 24px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            width: 400px;
-            margin: 0 auto;
-        }
-
-        #input {
-            margin-top: 20px;
-            width: 300px;
-            height: 40px;
-            font-size: 18px;
-            padding: 5px;
-        }
-
-        #wpm {
-            margin-top: 20px;
-        }
-    </style>
+    .btn {
+      margin-left: 5px;
+    }
+  </style>
 </head>
 <body>
-    <h1>10FastFingers</h1>
+  <h1>Catatan Pribadi</h1>
 
-    <div id="text-container">
-        <p id="text">Type the following text:</p>
-        <p id="current-word"></p>
-        <input type="text" id="input" autofocus>
-    </div>
+  <form id="noteForm">
+    <input type="text" id="noteTitle" placeholder="Judul catatan" required>
+    <textarea id="noteContent" placeholder="Isi catatan" required></textarea>
+    <button type="submit">Tambah Catatan</button>
+  </form>
 
-    <p id="wpm">WPM: 0</p>
+  <hr>
 
-    <script>
-        const textElement = document.getElementById("text");
-        const currentWordElement = document.getElementById("current-word");
-        const inputElement = document.getElementById("input");
-        const wpmElement = document.getElementById("wpm");
+  <input type="text" id="searchInput" placeholder="Cari catatan">
+  
+  <div id="noteList"></div>
 
-        const text = "This is a sample text for typing practice.";
-        const words = text.split(" ");
-        let currentWordIndex = 0;
-        let startTime;
-        let endTime;
-
-        function startTyping() {
-            textElement.style.display = "none";
-            currentWordElement.textContent = words[currentWordIndex];
-            startTime = new Date().getTime();
-        }
-
-        function checkInput() {
-            const inputText = inputElement.value.trim();
-            const currentWord = words[currentWordIndex];
-
-            if (inputText === currentWord) {
-                inputElement.value = "";
-                currentWordIndex++;
-
-                if (currentWordIndex >= words.length) {
-                    currentWordIndex = 0;
-                    endTime = new Date().getTime();
-                    const totalTimeInSeconds = (endTime - startTime) / 1000;
-                    const wordsPerMinute = Math.round(words.length / (totalTimeInSeconds / 60));
-                    wpmElement.textContent = "WPM: " + wordsPerMinute;
-                }
-
-                currentWordElement.textContent = words[currentWordIndex];
-            }
-        }
-
-        inputElement.addEventListener("input", checkInput);
-        inputElement.addEventListener("focus", startTyping);
-    </script>
+  <script>
+    // Fungsi untuk menyimpan catatan ke local storage
+    function saveNote() {
+      var title = document.getElementById('noteTitle').value;
+      var content = document.getElementById('noteContent').value;
+      var note = { title: title, content: content };
+      
+      if (localStorage.getItem('notes') === null) {
+        var notes = [];
+        notes.push(note);
+        localStorage.setItem('notes', JSON.stringify(notes));
+      } else {
+        var notes = JSON.parse(localStorage.getItem('notes'));
+        notes.push(note);
+        localStorage.setItem('notes', JSON.stringify(notes));
+      }
+      
+      document.getElementById('noteForm').reset();
+      displayNotes();
+    }
+    
+    // Fungsi untuk menampilkan catatan dari local storage
+    function displayNotes() {
+      var notes = JSON.parse(localStorage.getItem('notes'));
+      var noteList = document.getElementById('noteList');
+      noteList.innerHTML = '';
+      
+      if (notes !== null) {
+        notes.forEach(function(note, index) {
+          var noteDiv = document.createElement('div');
+          noteDiv.classList.add('note');
+          
+          if (note.title.includes(searchText)) {
+            noteDiv.classList.add('highlight');
+          }
+          
+          noteDiv.innerHTML = `
+            <h3>${note.title}</h3>
+            <p>${note.content}</p>
+            <button class="btn" onclick="copyToClipboard(${index})">Copy</button>
+            <button class="btn" onclick="editNote(${index})">Edit</button>
+            <button class="btn" onclick="deleteNote(${index})">Hapus</button>
+          `;
+          
+          noteList.appendChild(noteDiv);
+        });
+      }
+    }
+    
+    // Fungsi untuk mencari catatan berdasarkan judul
+    function searchNotes() {
+      searchText = document.getElementById('searchInput').value;
+      displayNotes();
+    }
+    
+    // Fungsi untuk menghapus catatan
+    function deleteNote(index) {
+      var notes = JSON.parse(localStorage.getItem('notes'));
+      notes.splice(index, 1);
+      localStorage.setItem('notes', JSON.stringify(notes));
+      displayNotes();
+    }
+    
+    // Fungsi untuk menyalin konten catatan ke clipboard
+    function copyToClipboard(index) {
+      var notes = JSON.parse(localStorage.getItem('notes'));
+      var note = notes[index];
+      var dummyInput = document.createElement('input');
+      dummyInput.setAttribute('value', note.content);
+      document.body.appendChild(dummyInput);
+      dummyInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummyInput);
+      alert('Catatan telah disalin ke clipboard');
+    }
+    
+    // Fungsi untuk mengedit catatan
+    function editNote(index) {
+      var notes = JSON.parse(localStorage.getItem('notes'));
+      var note = notes[index];
+      document.getElementById('noteTitle').value = note.title;
+      document.getElementById('noteContent').value = note.content;
+      deleteNote(index);
+    }
+    
+    // Event listener untuk form submit
+    document.getElementById('noteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      saveNote();
+    });
+    
+    // Event listener untuk search input
+    document.getElementById('searchInput').addEventListener('input', function() {
+      searchNotes();
+    });
+    
+    // Tampilkan catatan saat halaman pertama kali dimuat
+    displayNotes();
+  </script>
 </body>
 </html>
