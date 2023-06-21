@@ -1,171 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
 
-    h1 {
-      text-align: center;
-    }
+        h1 {
+            text-align: center;
+        }
 
-    #noteForm {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 20px;
-    }
+        #noteForm {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
 
-    #noteForm input,
-    #noteForm textarea {
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
+        #noteForm input,
+        #noteForm textarea {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
 
-    #noteForm button {
-      padding: 10px;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+        #noteForm button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-    hr {
-      margin: 20px 0;
-      border: none;
-      border-top: 1px solid #ccc;
-    }
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
 
-    #searchInput {
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
+        #searchInput {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
 
-    #noteList {
-      max-width: 600px;
-      margin: 0 auto;
-      counter-reset: note-counter; /* Menambahkan counter-reset di sini */
-    }
+        #noteList {
+            max-width: 600px;
+            margin: 0 auto;
+            counter-reset: note-counter;
+            /* Menambahkan counter-reset di sini */
+        }
 
-    .note {
-      margin-bottom: 10px;
-      padding: 10px;
-      background-color: #f2f2f2;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      position: relative; /* Menambahkan position: relative di sini */
-    }
+        .note {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            position: relative;
+            /* Menambahkan position: relative di sini */
+        }
 
-    .note::before {
-      counter-increment: note-counter;
-      content: counter(note-counter) ". ";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      font-weight: bold;
-      text-decoration: underline;
-    }
+        .note::before {
+            counter-increment: note-counter;
+            content: counter(note-counter) ". ";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            font-weight: bold;
+            text-decoration: underline;
+        }
 
-    .highlight {
-      background-color: yellow;
-    }
+        .highlight {
+            background-color: yellow;
+        }
 
-    .btn {
-      padding: 5px 10px;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+        .btn {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-    .highlight-number {
-      text-decoration: underline;
-      cursor: pointer;
-    }
-    .copy-success {
-      color: green;
-      margin-left: 5px;
-    }
-    .noteList .note .btn-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-  }
+        .highlight-number {
+            text-decoration: underline;
+            cursor: pointer;
+        }
 
-  .noteList .note .btn-container .btn {
-    margin-left: 10px;
-  }
+        .copy-success {
+            color: green;
+            margin-left: 5px;
+        }
 
-  /* CSS untuk ukuran teks output */
-  .noteList h3,
-  .noteList p {
-    font-size: 16px;
-  }
-  </style>
+        .noteList .note .btn-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .noteList .note .btn-container .btn {
+            margin-left: 10px;
+        }
+
+        /* CSS untuk ukuran teks output */
+        .noteList h3,
+        .noteList p {
+            font-size: 16px;
+        }
+    </style>
 </head>
+
 <body>
-  <h1>Catatan Pribadi</h1>
+    <h1>Catatan Pribadi</h1>
 
-  <form id="noteForm">
-    <input type="text" id="noteTitle" placeholder="Judul catatan" required>
-    <textarea id="noteContent" placeholder="Isi catatan" required></textarea>
-    <button type="submit">Tambah Catatan</button>
-  </form>
+    <form id="noteForm">
+        <input type="text" id="noteTitle" placeholder="Judul catatan" required>
+        <textarea id="noteContent" placeholder="Isi catatan" required></textarea>
+        <button type="submit">Tambah Catatan</button>
+    </form>
 
-  <hr>
+    <hr>
 
-  <input type="search" id="searchInput" placeholder="Cari catatan">
+    <input type="search" id="searchInput" placeholder="Cari catatan">
 
-  <div id="noteList" class="noteList"></div> <!-- Menambahkan class "noteList" di sini -->
+    <div id="noteList" class="noteList"></div> <!-- Menambahkan class "noteList" di sini -->
 
-  <script>
-    // Fungsi untuk menyimpan catatan ke local storage
-    function saveNote() {
-      var title = document.getElementById('noteTitle').value;
-      var content = document.getElementById('noteContent').value;
-      var note = { title: title, content: content };
+    <script>
+        // Fungsi untuk menyimpan catatan ke local storage
+        function saveNote() {
+            var title = document.getElementById('noteTitle').value;
+            var content = document.getElementById('noteContent').value;
+            var note = {
+                title: title,
+                content: content
+            };
 
-      if (localStorage.getItem('notes') === null) {
-        var notes = [];
-        notes.push(note);
-        localStorage.setItem('notes', JSON.stringify(notes));
-      } else {
-        var notes = JSON.parse(localStorage.getItem('notes'));
-        notes.push(note);
-        localStorage.setItem('notes', JSON.stringify(notes));
-      }
+            if (localStorage.getItem('notes') === null) {
+                var notes = [];
+                notes.push(note);
+                localStorage.setItem('notes', JSON.stringify(notes));
+            } else {
+                var notes = JSON.parse(localStorage.getItem('notes'));
+                notes.push(note);
+                localStorage.setItem('notes', JSON.stringify(notes));
+            }
 
-      document.getElementById('noteForm').reset();
-      displayNotes();
-    }
+            document.getElementById('noteForm').reset();
+            displayNotes();
+        }
 
-    // Fungsi untuk menampilkan catatan dari local storage
-    function displayNotes() {
-      var notes = JSON.parse(localStorage.getItem('notes'));
-      var noteList = document.getElementById('noteList');
-      noteList.innerHTML = '';
+        // Fungsi untuk menampilkan catatan dari local storage
+        function displayNotes() {
+            var notes = JSON.parse(localStorage.getItem('notes'));
+            var noteList = document.getElementById('noteList');
+            noteList.innerHTML = '';
 
-      if (notes !== null) {
-        var searchText = document.getElementById('searchInput').value.trim();
-        var regex = new RegExp('(\\d+)', 'gi');
+            if (notes !== null) {
+                var searchText = document.getElementById('searchInput').value.trim();
+                var regex = new RegExp('(\\d+)', 'gi');
 
-        notes.forEach(function (note, index) {
-          var noteDiv = document.createElement('pre');
-          noteDiv.classList.add('note');
+                notes.forEach(function (note, index) {
+                    var noteDiv = document.createElement('pre');
+                    noteDiv.classList.add('note');
 
-          var highlightedTitle = note.title.replace(regex, '<span class="highlight-number" onclick="copyNumber(event)">$1</span>');
-          var highlightedContent = note.content.replace(regex, '<span class="highlight-number" onclick="copyNumber(event)">$1</span>');
+                    var highlightedTitle = note.title.replace(regex,
+                        '<span class="highlight-number" onclick="copyNumber(event)">$1</span>');
+                    var highlightedContent = note.content.replace(regex,
+                        '<span class="highlight-number" onclick="copyNumber(event)">$1</span>');
 
-          noteDiv.innerHTML = `
+                    noteDiv.innerHTML = `
             <h3>${highlightedTitle}</h3>
             <p>${highlightedContent}</p>
             <button class="btn" onclick="copyToClipboard(${index})">Copy</button>
@@ -173,33 +184,33 @@
             <button class="btn" onclick="deleteNote(${index})">Hapus</button>
           `;
 
-          noteList.appendChild(noteDiv);
-        });
-      }
-    }
+                    noteList.appendChild(noteDiv);
+                });
+            }
+        }
 
-    // Fungsi untuk mencari catatan saat input pencarian berubah
-    function searchNotes() {
-      var searchText = document.getElementById('searchInput').value.trim().toLowerCase();
-      var notes = JSON.parse(localStorage.getItem('notes'));
-      var noteList = document.getElementById('noteList');
-      noteList.innerHTML = '';
+        // Fungsi untuk mencari catatan saat input pencarian berubah
+        function searchNotes() {
+            var searchText = document.getElementById('searchInput').value.trim().toLowerCase();
+            var notes = JSON.parse(localStorage.getItem('notes'));
+            var noteList = document.getElementById('noteList');
+            noteList.innerHTML = '';
 
-      if (notes !== null) {
-        var regex = new RegExp('(' + searchText + ')', 'gi');
+            if (notes !== null) {
+                var regex = new RegExp('(' + searchText + ')', 'gi');
 
-        notes.forEach(function (note, index) {
-          var title = note.title.toLowerCase();
-          var content = note.content.toLowerCase();
+                notes.forEach(function (note, index) {
+                    var title = note.title.toLowerCase();
+                    var content = note.content.toLowerCase();
 
-          if (title.includes(searchText) || content.includes(searchText)) {
-            var noteDiv = document.createElement('pre');
-            noteDiv.classList.add('note');
+                    if (title.includes(searchText) || content.includes(searchText)) {
+                        var noteDiv = document.createElement('pre');
+                        noteDiv.classList.add('note');
 
-            var highlightedTitle = highlightText(note.title, searchText);
-            var highlightedContent = highlightText(note.content, searchText);
+                        var highlightedTitle = highlightText(note.title, searchText);
+                        var highlightedContent = highlightText(note.content, searchText);
 
-            noteDiv.innerHTML = `
+                        noteDiv.innerHTML = `
               <h3>${highlightedTitle}</h3>
               <p>${highlightedContent}</p>
               <button class="btn" onclick="copyToClipboard(${index})">Copy</button>
@@ -207,88 +218,87 @@
               <button class="btn" onclick="deleteNote(${index})">Hapus</button>
             `;
 
-            noteList.appendChild(noteDiv);
+                        noteList.appendChild(noteDiv);
 
-            // Memindahkan fokus ke catatan yang cocok dengan pencarian
-            noteDiv.scrollIntoView();
-          }
+                        // Memindahkan fokus ke catatan yang cocok dengan pencarian
+                        noteDiv.scrollIntoView();
+                    }
+                });
+            }
+        }
+
+        // Fungsi untuk menghapus catatan
+        function deleteNote(index) {
+            var notes = JSON.parse(localStorage.getItem('notes'));
+            notes.splice(index, 1);
+            localStorage.setItem('notes', JSON.stringify(notes));
+            displayNotes();
+        }
+
+        // Fungsi untuk menyalin konten catatan ke clipboard
+        function copyToClipboard(index) {
+            var notes = JSON.parse(localStorage.getItem('notes'));
+            var note = notes[index];
+            var dummyInput = document.createElement('textarea');
+            dummyInput.value = note.content;
+            document.body.appendChild(dummyInput);
+            dummyInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummyInput);
+            alert('Catatan telah disalin ke clipboard');
+        }
+
+        // Fungsi untuk mengedit catatan
+        function editNote(index) {
+            var notes = JSON.parse(localStorage.getItem('notes'));
+            var note = notes[index];
+            document.getElementById('noteTitle').value = note.title;
+            document.getElementById('noteContent').value = note.content;
+            deleteNote(index);
+        }
+
+        // Fungsi untuk menyalin angka ke clipboard saat diklik
+        function copyNumber(event) {
+            var number = event.target.textContent;
+            var dummyInput = document.createElement('textarea');
+            dummyInput.value = number;
+            document.body.appendChild(dummyInput);
+            dummyInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummyInput);
+
+            var successMessage = document.createElement('span');
+            successMessage.classList.add('copy-success');
+            successMessage.innerHTML = '&#10004; Tersalin';
+
+            var parentElement = event.target.parentNode;
+            parentElement.insertBefore(successMessage, event.target.nextSibling);
+
+            setTimeout(function () {
+                successMessage.remove();
+            }, 1500);
+        }
+
+        // Fungsi untuk mewarnai teks yang cocok dengan pencarian
+        function highlightText(text, searchText) {
+            var regex = new RegExp('(' + searchText + ')', 'gi');
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+
+        // Event listener untuk form submit
+        document.getElementById('noteForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            saveNote();
         });
-      }
-    }
 
-    // Fungsi untuk menghapus catatan
-    function deleteNote(index) {
-      var notes = JSON.parse(localStorage.getItem('notes'));
-      notes.splice(index, 1);
-      localStorage.setItem('notes', JSON.stringify(notes));
-      displayNotes();
-    }
+        // Event listener untuk input pencarian
+        document.getElementById('searchInput').addEventListener('input', function () {
+            searchNotes();
+        });
 
-    // Fungsi untuk menyalin konten catatan ke clipboard
-    function copyToClipboard(index) {
-      var notes = JSON.parse(localStorage.getItem('notes'));
-      var note = notes[index];
-      var dummyInput = document.createElement('textarea');
-      dummyInput.value = note.content;
-      document.body.appendChild(dummyInput);
-      dummyInput.select();
-      document.execCommand('copy');
-      document.body.removeChild(dummyInput);
-      alert('Catatan telah disalin ke clipboard');
-    }
-
-    // Fungsi untuk mengedit catatan
-    function editNote(index) {
-      var notes = JSON.parse(localStorage.getItem('notes'));
-      var note = notes[index];
-      document.getElementById('noteTitle').value = note.title;
-      document.getElementById('noteContent').value = note.content;
-      deleteNote(index);
-    }
-
-    // Fungsi untuk menyalin angka ke clipboard saat diklik
-    function copyNumber(event) {
-      var number = event.target.textContent;
-      var dummyInput = document.createElement('textarea');
-      dummyInput.value = number;
-      document.body.appendChild(dummyInput);
-      dummyInput.select();
-      document.execCommand('copy');
-      document.body.removeChild(dummyInput);
-
-      var successMessage = document.createElement('span');
-      successMessage.classList.add('copy-success');
-      successMessage.innerHTML = '&#10004; Tersalin';
-
-      var parentElement = event.target.parentNode;
-      parentElement.insertBefore(successMessage, event.target.nextSibling);
-
-      setTimeout(function () {
-        successMessage.remove();
-      }, 1500);
-    }
-
-    // Fungsi untuk mewarnai teks yang cocok dengan pencarian
-    function highlightText(text, searchText) {
-      var regex = new RegExp('(' + searchText + ')', 'gi');
-      return text.replace(regex, '<span class="highlight">$1</span>');
-    }
-
-    // Event listener untuk form submit
-    document.getElementById('noteForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      saveNote();
-    });
-
-    // Event listener untuk input pencarian
-    document.getElementById('searchInput').addEventListener('input', function () {
-      searchNotes();
-    });
-
-    // Tampilkan catatan saat halaman pertama kali dimuat
-    displayNotes();
-  </script>
+        // Tampilkan catatan saat halaman pertama kali dimuat
+        displayNotes();
+    </script>
 </body>
+
 </html>
-
-
