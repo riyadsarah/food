@@ -7,6 +7,7 @@
   <title>Tampilan Web yang Profesional</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Viga&display=swap">
+
   <style>
     /* CSS untuk tampilan web */
     body {
@@ -93,8 +94,9 @@
       font-size: 28px;
       font-weight: bold;
       margin-bottom: 20px;
+      color: #e6e6e6;
     }
-
+    
     .content-left p {
       font-size: 20px;
       font-family: 'Open Sans', sans-serif;
@@ -122,6 +124,7 @@
 .content-right .box h3 {
   font-size: 18px;
   margin-bottom: 10px;
+ 
 }
 
     
@@ -161,7 +164,7 @@
       font-weight: bold;
       font-family: 'Viga', sans-serif;
       margin-top: 20px;
-      color: rgba(0, 0, 0, 0.842);
+      color: rgba(212, 61, 61, 0.842);
     }
 
     /* CSS untuk membuat tampilan web responsif */
@@ -325,13 +328,23 @@
     </ul>
   </nav>
   
+ 
 
+  
+  <script>
+    var typed = new Typed('#typed-text', {
+      strings: ['Hubungi Kami lewat WhatsApp'],
+      typeSpeed: 50,
+      backSpeed: 30,
+      loop: true
+    });
+  </script>
   <div class="content">
     <div class="content-left">
       <h2>TERIMA JASA REMOTE</h2>
-      <h3>TOOL/AKTIVASI TOOL</h3>
+      <p id="pr">TOOL/AKTIVASI TOOL</p>
       <p id="pr">
-        TERIMA JASA REMOTE<br>
+        
         TERIMA JASA REMOTE UNLOK PATREN - FRP -<br>
         BYPASS ICOUD - UNLOCK ICLOUD - UNLOC<br>
         BYPASS MICLOUD - CHANGE IMEI - REPAIR<br>
@@ -379,11 +392,10 @@
       </div>
       
       
-      <div class="box" onclick="sendWhatsAppMessage('+6283129564658', 'Assalamualaikum bang')">
-        <h3>WhatsApp</h3>
-        <p>Hubungi kami melalui WhatsApp untuk informasi lebih lanjut.</p>
+      <div class="box" onclick="sendWhatsAppMessage('+6283129564658', 'Assalamualaikum, saya telah melakukan pembayaran dan ini adalah bukti pembayaran saya.')">
+        <h3>Hubungi Kami lewat WhatsApp</h3>
+        <p>Kirimkan bukti pembayaran dan hubungi kami untuk informasi lebih lanjut.</p>
       </div>
-      
       <script>
         function sendWhatsAppMessage(number, message) {
           var encodedMessage = encodeURIComponent(message);
@@ -392,7 +404,7 @@
         }
       </script>
       
-      
+<!-- 
       <div class="box" onclick="showChoosePhotoContainer()">
         <h3>Masukkan bukti transfer</h3>
         <p>Setelah pembayaran selesai, silakan kirimkan bukti transfer.</p>
@@ -439,7 +451,7 @@
           reader.readAsDataURL(photo);
         }
       </script>
-      
+      -->
       
     </div>
   </div>
