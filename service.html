@@ -15,6 +15,7 @@
       padding: 0;
       background-image: url('img/00.jpg');
   background-size: cover;
+
     }
 
     /* Header */
@@ -100,24 +101,30 @@
     }
 
     .content-right {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
-    .content-right .box {
-      background: linear-gradient(to bottom, #00b7ff, #ffffff00);
-      padding: 20px;
-      color: #e6e6e6;
-      border-radius: 10px;
-    }
+.content-right .box {
+  background: linear-gradient(to bottom, #00b7ff, #ffffff00);
+  padding: 20px;
+  color: #e6e6e6;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
 
-    .content-right .box h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
+.content-right .box:hover {
+  transform: scale(1.05);
+}
 
+.content-right .box h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+    
     /* Footer */
     .footer {
       background: linear-gradient(to bottom, #11394900, #000000);
@@ -206,7 +213,103 @@
       font-family: 'Viga';
       color: #e6e6e6;
     }
+    /* popup */
+    .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
 
+.popup {
+  background-color: #e6e6e6;
+  padding: 20px;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  border-radius: 10px;
+}
+
+.popup h3 {
+  margin-top: 0;
+}
+
+.popup p {
+  margin-bottom: 20px;
+}
+
+.popup .number {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.popup .number span {
+  margin-right: 10px;
+}
+
+.popup .number .btn {
+  margin-left: auto;
+  display: inline-block;
+  padding: 3px 7px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.popup .number .btn:not(:last-child) {
+  margin-right: 10px;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+
+.box {
+    position: relative;
+  }
+
+  .choose-photo-container {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .choose-photo-container p {
+    margin-bottom: 10px;
+  }
+
+  .choose-photo-container button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .preview-photo img {
+    max-width: 100%;
+    max-height: 200px;
+    margin-top: 10px;
+  }
   </style>
 </head>
 
@@ -242,18 +345,102 @@
         <h3>Masukkan No IMEI via Server</h3>
         <p>Contoh: 123456789012345</p>
       </div>
-      <div class="box">
+      <div class="box" onclick="showPopup()">
         <h3>Pembayaran via OVO, Dana, PayPal, dan Mandiri</h3>
         <p>Silakan pilih metode pembayaran yang tersedia.</p>
       </div>
-      <div class="box">
+      
+      <div class="overlay" onclick="hidePopup()">
+        <div class="popup">
+          <h3>Pembayaran via OVO, Dana, PayPal, dan Mandiri</h3>
+          <p>Silakan pilih metode pembayaran yang tersedia:</p>
+          <div class="number">
+            <span>Mandiri:</span>
+            <span class="account-number">1400018086604
+            </span>
+            <button class="btn" onclick="copyToClipboard('1400018086604')">Salin</button>
+          </div>
+          <div class="number">
+            <span>Dana:</span>
+            <span class="account-number">083108497963</span>
+            <button class="btn" onclick="copyToClipboard('083108497963')">Salin</button>
+          </div>
+          <div class="number">
+            <span>Ovo:</span>
+            <span class="account-number">083108497963</span>
+            <button class="btn" onclick="copyToClipboard('083108497963')">Salin</button>
+          </div>
+          <div class="number">
+            <span>Paypal:</span>
+            <span class="account-number">karomahpemalang0@gmail.com</span>
+            <button class="btn" onclick="copyToClipboard('karomahpemalang0@gmail.com')">Salin</button>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class="box" onclick="sendWhatsAppMessage('+6283129564658', 'Assalamualaikum bang')">
         <h3>WhatsApp</h3>
         <p>Hubungi kami melalui WhatsApp untuk informasi lebih lanjut.</p>
       </div>
-      <div class="box">
+      
+      <script>
+        function sendWhatsAppMessage(number, message) {
+          var encodedMessage = encodeURIComponent(message);
+          var url = 'https://api.whatsapp.com/send?phone=' + number + '&text=' + encodedMessage;
+          window.open(url);
+        }
+      </script>
+      
+      
+      <div class="box" onclick="showChoosePhotoContainer()">
         <h3>Masukkan bukti transfer</h3>
         <p>Setelah pembayaran selesai, silakan kirimkan bukti transfer.</p>
+        <input type="file" id="upload-photo" style="display: none">
+        <div id="choose-photo-container" class="choose-photo-container">
+          <p>Pilih foto:</p>
+          <button id="choose-photo-btn" onclick="selectPhoto()">Pilih Foto</button>
+        </div>
+        <div id="preview-photo" class="preview-photo" style="display: none"></div>
+        <button onclick="sendPhotoViaWhatsApp('+6283129564658')" id="send-whatsapp-btn" style="display: none">Kirim Foto lewat WhatsApp</button>
       </div>
+      
+      <script>
+        function showChoosePhotoContainer() {
+          var choosePhotoContainer = document.getElementById('choose-photo-container');
+          choosePhotoContainer.style.display = 'block';
+        }
+      
+        function selectPhoto() {
+          var uploadInput = document.getElementById('upload-photo');
+          uploadInput.click();
+          uploadInput.addEventListener('change', function() {
+            var preview = document.getElementById('preview-photo');
+            var photo = uploadInput.files[0];
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              preview.innerHTML = '<img src="' + e.target.result + '" alt="Preview Foto">';
+              document.getElementById('send-whatsapp-btn').style.display = 'block';
+              preview.style.display = 'block';
+            }
+            reader.readAsDataURL(photo);
+          });
+        }
+      
+        function sendPhotoViaWhatsApp(number) {
+          var uploadInput = document.getElementById('upload-photo');
+          var photo = uploadInput.files[0];
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            var encodedPhoto = encodeURIComponent(e.target.result);
+            var url = 'https://api.whatsapp.com/send?phone=' + number + '&text=Kirim foto' + '&attachment=' + encodedPhoto;
+            window.open(url);
+          }
+          reader.readAsDataURL(photo);
+        }
+      </script>
+      
+      
     </div>
   </div>
 
@@ -266,6 +453,7 @@
       <a href="#">Hubungi Kami</a>
     </div>
   </footer>
+ 
 
   <script>
     let prevScrollPos = window.pageYOffset;
@@ -282,6 +470,29 @@
       prevScrollPos = currentScrollPos;
     });
   </script>
+ 
+ 
+ <script>
+  function showPopup() {
+    var overlay = document.querySelector('.overlay');
+    overlay.classList.add('active');
+  }
+  
+  function hidePopup() {
+    var overlay = document.querySelector('.overlay');
+    overlay.classList.remove('active');
+  }
+  
+  function copyToClipboard(text) {
+    var tempInput = document.createElement('input');
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    alert('Nomor berhasil disalin: ' + text);
+  }
+</script>
   
 </body>
 
