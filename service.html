@@ -7,7 +7,7 @@
   <title>Tampilan Web yang Profesional</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Viga&display=swap">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
   <style>
     /* CSS untuk tampilan web */
     body {
@@ -18,65 +18,41 @@
   background-size: cover;
 
     }
-
-    /* Header */
-    .header {
-      background-color: #000000;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
+    
+    .navbar-brand img {
+      animation: pulse 6s infinite;
+      height: 70px;
+      width: auto;
     }
 
-    .header h1 {
-      margin: 0;
-      font-size: 32px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      line-height: 1.2;
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(0.8);
+      }
+      100% {
+        transform: scale(1);
+      }
     }
 
-    /* Navbar */
     .navbar {
-      background: linear-gradient(to bottom, #000000, #00000000);
-      color: #00d9ff;
-      padding: 10px;
-      display: flex;
-      justify-content: space-between;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1;
-      transition: background-color 0.3s ease;
+      background: linear-gradient(to bottom, #000000, #ffffff00);
     }
 
 
 
-    .navbar ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
-
-    .navbar li {
-      margin-left: 20px;
-    }
-
-    .navbar a {
-      color: #86fbff;
-      text-decoration: none;
-      transition: color 0.3s ease;
+    .navbar .nav-link {
+      transition: all 0.3s;
       margin-right: 20px;
     }
 
-    .navbar a:hover {
-      color: #f5f5f5;
+    .navbar .nav-link:hover {
+      background: linear-gradient(to bottom, #00000083, #ffffff00);
+      border-radius: 10px;
     }
-
+   
     /* Content */
     .content {
       padding: 20px;
@@ -175,43 +151,9 @@
         font-size: 14px;
       }
 
-      .navbar {
-        padding: 10px;
-        flex-direction: column;
-        align-items: center;
-        background: linear-gradient(to bottom, #11394900, #000000);
-      }
-
-      .navbar .logo {
-        margin-bottom: 10px;
-      
-      }
-
-      .navbar ul {
-        justify-content: center;
-      }
-
-      .navbar li {
-        margin: 0 10px;
-      }
-
-      .content {
-        padding: 10px;
-        flex-direction: column;
-      }
-      
-      }
-      .content-left,
-      .content-right {
-        flex: 1;
-        margin-bottom: 20px;
       }
     
-    .logo img {
-  width: 50px; /* Atur lebar gambar logo */
-  height: auto;
-   /* Biarkan tinggi gambar menyesuaikan proporsi */
-}
+    
     #pr {
       font-family: 'Viga';
       color: #e6e6e6;
@@ -280,54 +222,58 @@
   pointer-events: auto;
 }
 
+#input-container {
+  display: none;
+  margin-top: 10px;
+}
+
+#imei-input {
+  padding: 5px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
 
-.box {
-    position: relative;
-  }
-
-  .choose-photo-container {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-
-  .choose-photo-container p {
-    margin-bottom: 10px;
-  }
-
-  .choose-photo-container button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  .preview-photo img {
-    max-width: 100%;
-    max-height: 200px;
-    margin-top: 10px;
-  }
   </style>
 </head>
 
 <body>
-  <nav class="navbar">
-    <div class="logo">
-      <img src="img/po.png" alt="Logo MPC">
-    </div>
-    <ul>
-      <li><a href="#">Beranda</a></li>
-      <li><a href="#">Layanan</a></li>
-      <li><a href="#">Kontak</a></li>
-    </ul>
-  </nav>
   
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img src="img/po.png" alt="Logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Menu 1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Menu 2</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Menu 3</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Menu 4</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
  
 
   
@@ -354,14 +300,63 @@
     </div>
 
     <div class="content-right">
-      <div class="box">
+      <div class="box" onclick="showInput()">
         <h3>Masukkan No IMEI via Server</h3>
         <p>Contoh: 123456789012345</p>
       </div>
+      <div id="input-container" style="display: none">
+        <input type="text" id="imei-input" placeholder="Masukkan No IMEI">
+        <button onclick="sendWhatsAppMessageFromInput()">Kirim</button>
+      </div>
+
       <div class="box" onclick="showPopup()">
         <h3>Pembayaran via OVO, Dana, PayPal, dan Mandiri</h3>
         <p>Silakan pilih metode pembayaran yang tersedia.</p>
       </div>
+
+      
+      <div class="box" onclick="sendWhatsAppMessage('+6283129564658', 'Assalamualaikum, saya telah melakukan pembayaran dan ini adalah bukti pembayaran saya.')">
+        <h3>Hubungi Kami lewat WhatsApp</h3>
+        <p>Kirimkan bukti pembayaran dan hubungi kami untuk informasi lebih lanjut.</p>
+      </div>
+      
+      <script>
+        function showInput() {
+          var inputContainer = document.getElementById('input-container');
+          inputContainer.style.display = 'block';
+        }
+      
+        function sendWhatsAppMessageFromInput() {
+          var imeiInput = document.getElementById('imei-input');
+          var imei = imeiInput.value.trim();
+      
+          // Validasi panjang nomor IMEI
+          if (imei.length !== 15) {
+            alert('Nomor IMEI harus terdiri dari 15 digit.');
+            return;
+          }
+      
+          // Validasi hanya mengandung angka
+          if (!/^\d+$/.test(imei)) {
+            alert('Nomor IMEI hanya boleh mengandung angka.');
+            return;
+          }
+      
+          var encodedMessage = encodeURIComponent('No IMEI: ' + imei);
+          var url = 'https://api.whatsapp.com/send?phone=+6283129564658&text=' + encodedMessage;
+          window.open(url);
+        }
+      
+        function sendWhatsAppMessage(number, message) {
+          var encodedMessage = encodeURIComponent(message);
+          var url = 'https://api.whatsapp.com/send?phone=' + number + '&text=' + encodedMessage;
+          window.open(url);
+        }
+      </script>
+      
+      
+      
+     
       
       <div class="overlay" onclick="hidePopup()">
         <div class="popup">
@@ -391,18 +386,8 @@
         </div>
       </div>
       
-      
-      <div class="box" onclick="sendWhatsAppMessage('+6283129564658', 'Assalamualaikum, saya telah melakukan pembayaran dan ini adalah bukti pembayaran saya.')">
-        <h3>Hubungi Kami lewat WhatsApp</h3>
-        <p>Kirimkan bukti pembayaran dan hubungi kami untuk informasi lebih lanjut.</p>
-      </div>
-      <script>
-        function sendWhatsAppMessage(number, message) {
-          var encodedMessage = encodeURIComponent(message);
-          var url = 'https://api.whatsapp.com/send?phone=' + number + '&text=' + encodedMessage;
-          window.open(url);
-        }
-      </script>
+ 
+     
       
 <!-- 
       <div class="box" onclick="showChoosePhotoContainer()">
@@ -467,21 +452,7 @@
   </footer>
  
 
-  <script>
-    let prevScrollPos = window.pageYOffset;
-    window.addEventListener('scroll', function() {
-      const currentScrollPos = window.pageYOffset;
-      const navbar = document.querySelector('.navbar');
   
-      if (prevScrollPos > currentScrollPos) {
-        navbar.style.top = '0';
-      } else {
-        navbar.style.top = '-70px';
-      }
-  
-      prevScrollPos = currentScrollPos;
-    });
-  </script>
  
  
  <script>
@@ -505,7 +476,7 @@
     alert('Nomor berhasil disalin: ' + text);
   }
 </script>
-  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
