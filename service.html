@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,16 +13,13 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #fff;
-      background-image: url("img/sercis2.png");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
+      background-image: url('img/00.jpg');
+  background-size: cover;
     }
 
     /* Header */
     .header {
-      background-color: #1a72f7;
+      background-color: #000000;
       color: #fff;
       padding: 20px;
       text-align: center;
@@ -38,29 +36,39 @@
 
     /* Navbar */
     .navbar {
-      background-color: #4287f5;
-      color: #fff;
+      background: linear-gradient(to bottom, #000000, #00000000);
+      color: #00d9ff;
       padding: 10px;
       display: flex;
       justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+      transition: background-color 0.3s ease;
     }
+
+
 
     .navbar ul {
       list-style: none;
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
+      align-items: center;
     }
 
     .navbar li {
-      margin: 0 10px;
+      margin-left: 20px;
     }
 
     .navbar a {
-      color: #fff;
+      color: #86fbff;
       text-decoration: none;
       transition: color 0.3s ease;
+      margin-right: 20px;
     }
 
     .navbar a:hover {
@@ -73,6 +81,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-top: 70px;
     }
 
     .content-left {
@@ -80,16 +89,15 @@
     }
 
     .content-left h2 {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  
-}
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
 
-.content-left p {
-  font-size: 20px;
-  font-family: 'Open Sans', sans-serif;
-}
+    .content-left p {
+      font-size: 20px;
+      font-family: 'Open Sans', sans-serif;
+    }
 
     .content-right {
       flex: 1;
@@ -99,7 +107,7 @@
     }
 
     .content-right .box {
-      background-color: #4287f5;
+      background: linear-gradient(to bottom, #00b7ff, #ffffff00);
       padding: 20px;
       color: #e6e6e6;
       border-radius: 10px;
@@ -112,7 +120,7 @@
 
     /* Footer */
     .footer {
-      background-color: #0000008f;
+      background: linear-gradient(to bottom, #11394900, #000000);
       color: #fff;
       padding: 50px 20px;
       text-align: center;
@@ -137,7 +145,7 @@
     }
 
     .footer .footer-info a:hover {
-      color: #4287f5;
+      color: #f5f5f5;
     }
 
     /* H1 */
@@ -145,50 +153,81 @@
       font-size: 36px;
       font-weight: bold;
       font-family: 'Viga', sans-serif;
-      
       margin-top: 20px;
       color: rgba(0, 0, 0, 0.842);
     }
 
-
     /* CSS untuk membuat tampilan web responsif */
     @media only screen and (max-width: 600px) {
-      .header, .footer {
+      .header,
+      #pr,
+      .footer {
         font-size: 14px;
+      }
+
+      .navbar {
+        padding: 10px;
+        flex-direction: column;
+        align-items: center;
+        background: linear-gradient(to bottom, #11394900, #000000);
+      }
+
+      .navbar .logo {
+        margin-bottom: 10px;
+      
+      }
+
+      .navbar ul {
+        justify-content: center;
+      }
+
+      .navbar li {
+        margin: 0 10px;
       }
 
       .content {
         padding: 10px;
         flex-direction: column;
       }
-
-      .content-left, .content-right {
+      
+      }
+      .content-left,
+      .content-right {
         flex: 1;
         margin-bottom: 20px;
       }
+    
+    .logo img {
+  width: 50px; /* Atur lebar gambar logo */
+  height: auto;
+   /* Biarkan tinggi gambar menyesuaikan proporsi */
+}
+    #pr {
+      font-family: 'Viga';
+      color: #e6e6e6;
     }
+
   </style>
 </head>
-<body>
-  <header class="header">
-    <h1>READY REMOTE/RENTAL</h1>
-  </header>
 
+<body>
   <nav class="navbar">
+    <div class="logo">
+      <img src="img/po.png" alt="Logo MPC">
+    </div>
     <ul>
       <li><a href="#">Beranda</a></li>
-      <li><a href="#">Tentang Kami</a></li>
       <li><a href="#">Layanan</a></li>
-      <li><a href="#">Portofolio</a></li>
       <li><a href="#">Kontak</a></li>
     </ul>
   </nav>
+  
 
   <div class="content">
     <div class="content-left">
-        <h2>TERIMA JASA REMOTE</h2><br><br>
+      <h2>TERIMA JASA REMOTE</h2>
       <h3>TOOL/AKTIVASI TOOL</h3>
-      <p>
+      <p id="pr">
         TERIMA JASA REMOTE<br>
         TERIMA JASA REMOTE UNLOK PATREN - FRP -<br>
         BYPASS ICOUD - UNLOCK ICLOUD - UNLOC<br>
@@ -227,5 +266,23 @@
       <a href="#">Hubungi Kami</a>
     </div>
   </footer>
+
+  <script>
+    let prevScrollPos = window.pageYOffset;
+    window.addEventListener('scroll', function() {
+      const currentScrollPos = window.pageYOffset;
+      const navbar = document.querySelector('.navbar');
+  
+      if (prevScrollPos > currentScrollPos) {
+        navbar.style.top = '0';
+      } else {
+        navbar.style.top = '-70px';
+      }
+  
+      prevScrollPos = currentScrollPos;
+    });
+  </script>
+  
 </body>
+
 </html>
