@@ -143,15 +143,7 @@
       color: rgba(212, 61, 61, 0.842);
     }
 
-    /* CSS untuk membuat tampilan web responsif */
-    @media only screen and (max-width: 600px) {
-      .header,
-      #pr,
-      .footer {
-        font-size: 14px;
-      }
-
-      }
+  
     
     
     #pr {
@@ -243,12 +235,31 @@ button {
   cursor: pointer;
 }
 
+.content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .box {
+    width: 100%;
+  }
+
+  /* Styles for mobile screens */
+  @media (max-width: 768px) {
+    .content {
+      flex-direction: column;
+    }
+
+    .box {
+      margin-bottom: 20px;
+    }
+  }
 
   </style>
 </head>
 
 <body>
-  
+ 
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="#"><img src="img/po.png" alt="Logo"></a>
@@ -274,17 +285,10 @@ button {
     </div>
   </nav>
 
- 
+
 
   
-  <script>
-    var typed = new Typed('#typed-text', {
-      strings: ['Hubungi Kami lewat WhatsApp'],
-      typeSpeed: 50,
-      backSpeed: 30,
-      loop: true
-    });
-  </script>
+
   <div class="content">
     <div class="content-left">
       <h2>TERIMA JASA REMOTE</h2>
@@ -303,12 +307,13 @@ button {
       <div class="box" onclick="showInput()">
         <h3>Masukkan No IMEI via Server</h3>
         <p>Contoh: 123456789012345</p>
+        <div id="input-container" style="display: none">
+          <input type="text" id="imei-input" placeholder="Masukkan No IMEI">
+          <button onclick="sendWhatsAppMessageFromInput()">Kirim</button>
+        </div>
+  
       </div>
-      <div id="input-container" style="display: none">
-        <input type="text" id="imei-input" placeholder="Masukkan No IMEI">
-        <button onclick="sendWhatsAppMessageFromInput()">Kirim</button>
-      </div>
-
+     
       <div class="box" onclick="showPopup()">
         <h3>Pembayaran via OVO, Dana, PayPal, dan Mandiri</h3>
         <p>Silakan pilih metode pembayaran yang tersedia.</p>
@@ -319,44 +324,6 @@ button {
         <h3>Hubungi Kami lewat WhatsApp</h3>
         <p>Kirimkan bukti pembayaran dan hubungi kami untuk informasi lebih lanjut.</p>
       </div>
-      
-      <script>
-        function showInput() {
-          var inputContainer = document.getElementById('input-container');
-          inputContainer.style.display = 'block';
-        }
-      
-        function sendWhatsAppMessageFromInput() {
-          var imeiInput = document.getElementById('imei-input');
-          var imei = imeiInput.value.trim();
-      
-          // Validasi panjang nomor IMEI
-          if (imei.length !== 15) {
-            alert('Nomor IMEI harus terdiri dari 15 digit.');
-            return;
-          }
-      
-          // Validasi hanya mengandung angka
-          if (!/^\d+$/.test(imei)) {
-            alert('Nomor IMEI hanya boleh mengandung angka.');
-            return;
-          }
-      
-          var encodedMessage = encodeURIComponent('No IMEI: ' + imei);
-          var url = 'https://api.whatsapp.com/send?phone=+6283129564658&text=' + encodedMessage;
-          window.open(url);
-        }
-      
-        function sendWhatsAppMessage(number, message) {
-          var encodedMessage = encodeURIComponent(message);
-          var url = 'https://api.whatsapp.com/send?phone=' + number + '&text=' + encodedMessage;
-          window.open(url);
-        }
-      </script>
-      
-      
-      
-     
       
       <div class="overlay" onclick="hidePopup()">
         <div class="popup">
@@ -452,7 +419,39 @@ button {
   </footer>
  
 
+  <script>
+    function showInput() {
+      var inputContainer = document.getElementById('input-container');
+      inputContainer.style.display = 'block';
+    }
   
+    function sendWhatsAppMessageFromInput() {
+      var imeiInput = document.getElementById('imei-input');
+      var imei = imeiInput.value.trim();
+  
+      // Validasi panjang nomor IMEI
+      if (imei.length !== 15) {
+        alert('Nomor IMEI harus terdiri dari 15 digit.');
+        return;
+      }
+  
+      // Validasi hanya mengandung angka
+      if (!/^\d+$/.test(imei)) {
+        alert('Nomor IMEI hanya boleh mengandung angka.');
+        return;
+      }
+  
+      var encodedMessage = encodeURIComponent('No IMEI: ' + imei);
+      var url = 'https://api.whatsapp.com/send?phone=+6283129564658&text=' + encodedMessage;
+      window.open(url);
+    }
+  
+    function sendWhatsAppMessage(number, message) {
+      var encodedMessage = encodeURIComponent(message);
+      var url = 'https://api.whatsapp.com/send?phone=' + number + '&text=' + encodedMessage;
+      window.open(url);
+    }
+  </script>
  
  
  <script>
