@@ -8,16 +8,19 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Viga&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
   <style>
     /* CSS untuk tampilan web */
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-image: url('img/00.jpg');
-  background-size: cover;
-
-    }
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('img/00.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
     
     .navbar-brand img {
       animation: pulse 6s infinite;
@@ -149,6 +152,7 @@
     #pr {
       font-family: 'Viga';
       color: #e6e6e6;
+      text-align: left;
     }
     /* popup */
     .overlay {
@@ -254,6 +258,55 @@ button {
       margin-bottom: 20px;
     }
   }
+  @media (max-width: 768px) {
+    #pr {
+      font-size: 16px;
+      text-align: left;
+    }
+  }
+
+
+  .custom-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background: linear-gradient(to bottom, #000000, #ffffff00);
+    padding: 20px;
+    margin: 30px;
+    width: 300px;
+    border-radius: 10px;
+  }
+
+  .custom-box-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .custom-box-logo {
+    width: 100px;
+    margin-right: 10px;
+  }
+
+  .custom-box-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    color: #e6e6e6;
+  }
+
+  .custom-box-icon {
+    font-size: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #0278ff;
+  }
+
+  .custom-box-icon:hover {
+    transform: scale(1.2);
+    color: #00ff08;
+  }
 
   </style>
 </head>
@@ -269,21 +322,22 @@ button {
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Menu 1</a>
+            <a class="nav-link" href="#">Layanan</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Menu 2</a>
+            <a class="nav-link" href="#">Produk</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Menu 3</a>
+            <a class="nav-link" href="#">Pemesanan</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Menu 4</a>
+            <a class="nav-link" href="#">Kontak</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  
 
 
 
@@ -301,7 +355,7 @@ button {
         BESIBAND - AUTH MI SERVER - AUTH OPPO<br>
         SERVER. DLL
       </p>
-    </div>
+    </div><br><br><br>
 
     <div class="content-right">
       <div class="box" onclick="showInput()">
@@ -353,8 +407,11 @@ button {
         </div>
       </div>
       
- 
+
      
+      
+      
+      
       
 <!-- 
       <div class="box" onclick="showChoosePhotoContainer()">
@@ -407,6 +464,19 @@ button {
       
     </div>
   </div>
+
+
+
+  <div class="custom-box">
+    <img src="img/po.png" alt="Logo" class="custom-box-logo">
+    <h3 class="custom-box-title">Cek IMEI</h3>
+    <i class="fas fa-arrow-right custom-box-icon"></i>
+  </div>
+  <script>
+    document.querySelector('.custom-box-icon').addEventListener('click', function() {
+      window.location.href = 'https://bit.ly/3CAjX9f';
+    });
+  </script>
 
   <footer class="footer">
     <p>Hak Cipta &copy; 2023 Teknisi Jaman Now</p>
