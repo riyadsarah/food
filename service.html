@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Viga&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
   <style>
     /* CSS untuk tampilan web */
     body {
@@ -337,6 +338,81 @@ button {
     transform: scale(1.2);
     color: #00ff08;
   }
+  
+
+
+  .testimonial-section {
+  text-align: center;
+  padding: 20px;
+}
+
+.testimonial-section h2 {
+  margin-top: 0;
+}
+
+.testimonial-slider {
+  width: 600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+  justify-content: center;
+  align-items: center; /* Menengahkan secara vertikal */
+}
+
+.testimonial-slide {
+  text-align: center;
+}
+
+.testimonial-slide img {
+  width: 200px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  justify-self: center; /* Menengahkan secara horizontal */
+}
+
+.testimonial-slide h3 {
+  margin: 0;
+  color: #ffffff;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.modal img {
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+  margin: 20px auto;
+}
+
+.modal .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .testimonial-slider {
+    width: 90%;
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial-slide img {
+    width: 150px;
+  }
+}
 
   </style>
 </head>
@@ -506,7 +582,63 @@ button {
     document.querySelector('.custom-box-icon').addEventListener('click', function() {
       window.location.href = 'https://bit.ly/3CAjX9f';
     });
-  </script>
+  </script><br><br><br>
+
+
+<div class="testimonial-section">
+  <h2 style="color: #e6e6e6; margin: 30px;">Testimoni</h2>
+  <div class="testimonial-slider">
+    <div class="testimonial-slide">
+      <img src="img/testi.jpg" alt="Gambar 1" onclick="openImageModal(this)">
+      <h3>Judul Testimoni 1</h3>
+    </div>
+    <div class="testimonial-slide">
+      <img src="img/testi.jpg" alt="Gambar 2" onclick="openImageModal(this)">
+      <h3>Judul Testimoni 2</h3>
+    </div>
+    <div class="testimonial-slide">
+      <img src="img/testi.jpg" alt="Gambar 3" onclick="openImageModal(this)">
+      <h3>Judul Testimoni 3</h3>
+    </div>
+  </div>
+</div>
+
+<!-- Modal untuk memperbesar gambar -->
+<div id="imageModal" class="modal">
+  <span class="close" onclick="closeImageModal()">&times;</span>
+  <img id="modalImage" src="" alt="Gambar Testimoni">
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.testimonial-slider').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      arrows: true,
+      dots: true,
+      prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+      nextArrow: '<button type="button" class="slick-next">Next</button>',
+    });
+  });
+</script>
+<script>
+  // Fungsi untuk membuka modal gambar
+function openImageModal(image) {
+  document.getElementById("modalImage").src = image.src;
+  document.getElementById("imageModal").style.display = "block";
+}
+
+// Fungsi untuk menutup modal gambar
+function closeImageModal() {
+  document.getElementById("imageModal").style.display = "none";
+}
+
+</script>
 
   <footer class="footer">
     <p>Hak Cipta &copy; 2023 Teknisi Jaman Now</p>
