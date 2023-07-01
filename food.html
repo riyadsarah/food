@@ -242,6 +242,7 @@ body {
 
 
     </style>
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f6dd2e35-71ca-415e-ac6c-a105f52d9ad6";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </head>
 <body>
 
@@ -283,7 +284,7 @@ body {
   <form>
         <h2 style="color: rgba(0, 0, 0, 0.726);">Isi data pembelian</h2><br>
   
-        <button type="button" onclick="ambilLokasi()"><i class="fa-solid fa-location-dot"></i></button>
+      
      <input type="text" id="lokasi" name="lokasi" placeholder="Alamat">
       <textarea id="pesan" name="pesan" placeholder="Catatan" style="width: 200px; height: 50px; font-size: 13px;"></textarea><br>
       <button type="button" onclick="pesanMenu('Menu Item 2')">Pesan Sekarang <i class="fa-solid fa-paper-plane"></i></button>
@@ -327,12 +328,14 @@ body {
           <label style="color: #ff0000; text-align: left; margin-left: 10px;">
             <input type="checkbox" name="menu1_rasa" value="pedas-banget"> Pedas banget♨️
           </label>
+          <button type="button" onclick="pesanMenu('Menu Item 2')">Pesan Sekarang <i class="fa-solid fa-paper-plane"></i></button>
         </div>
         <div>
           <button type="button" id="btn-minus1"><i class="fa-solid fa-minus"></i></button>
           <input type="number" class="input-number" name="menu1_jumlah" value="1" min="0" style="width: 70px;">
           <button type="button" id="btn-plus1"><i class="fa-solid fa-plus"></i></button>
         </div>
+       
       </div>
 
 
@@ -355,6 +358,12 @@ body {
         <div class="discounted-price" style="color: #ff0101;">Baso ikan</div>
 
         <div class="card-description" style="height: 100px; margin-left: 10px; margin-right: 10px;">
+          <div>
+         
+            <button type="button" id="btn-minus2"><i class="fa-solid fa-minus"></i></button>
+            <input type="number" class="input-number" name="menu2_jumlah" value="1" min="0" style="width: 70px;">
+            <button type="button" id="btn-plus2"><i class="fa-solid fa-plus"></i></button>
+          </div>
           <label style="color: #000000; text-align: left; margin-left: 10px;">
             <input type="checkbox" name="menu2_rasa" value="Pakai ceker"> Pakai Ceker
           </label>
@@ -369,11 +378,9 @@ body {
           </label>
 
         </div>
-        <div>
-          <button type="button" id="btn-minus2"><i class="fa-solid fa-minus"></i></button>
-          <input type="number" class="input-number" name="menu2_jumlah" value="1" min="0" style="width: 70px;">
-          <button type="button" id="btn-plus2"><i class="fa-solid fa-plus"></i></button>
-        </div>
+        <button type="button" onclick="pesanMenu('Menu Item 2')">Pesan Sekarang <i class="fa-solid fa-paper-plane"></i></button>
+        
+        
       </div>
       <div class="card-88">
 
@@ -441,119 +448,119 @@ body {
         </div>
       </div>
   
-  <script>
-    function ambilLokasi() {
-      if (navigator.geolocation) {
-        navigator.permissions.query({
-          name: 'geolocation'
-        }).then(permissionStatus => {
-          if (permissionStatus.state === 'granted') {
-            navigator.geolocation.getCurrentPosition(tampilkanPeta);
-          } else if (permissionStatus.state === 'prompt') {
-            navigator.geolocation.getCurrentPosition(tampilkanPeta, error, {
-              timeout: 10000
-            });
-          } else if (permissionStatus.state === 'denied') {
-            alert("Izin lokasi telah ditolak. Aktifkan izin lokasi di pengaturan perangkat Anda.");
-          }
-        });
-      } else {
-        alert("Geolocation tidak didukung oleh browser Anda");
-      }
-    }
-
-    function error(err) {
-      alert(`Tidak dapat memperoleh lokasi: ${err.message}`);
-    }
-
-    function tampilkanPeta(position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      const mapUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
-      if (confirm(`Lokasi Anda: ${mapUrl}. Apakah Anda ingin membagikan lokasi ini?`)) {
-        window.open(mapUrl);
-      }
-    }
-
-    function pesanMenu() {
-      const nomorWa = '+62895337068069'; // Ganti nomor WhatsApp dengan nomor Anda
-      const lokasi = document.getElementById("lokasi").value;
-      let message = document.getElementById("pesan").value || '';
-
-      // Ambil nilai checkbox untuk menu pertama
-      const menu1Rasas = document.querySelectorAll("input[name='menu1_rasa']:checked");
-      if (menu1Rasas.length > 0) {
-        message += `\n\nBeli seblak lumpia dengan rasa `;
-        for (let i = 0; i < menu1Rasas.length; i++) {
-          if (i > 0) {
-            message += ', ';
-          }
-          message += menu1Rasas[i].value;
+  
+    <script>
+      
+    
+        function error(err) {
+            alert(`Tidak dapat memperoleh lokasi: ${err.message}`);
         }
-        const menu1Jumlah = document.querySelector("input[name='menu1_jumlah']");
-        if (menu1Jumlah) {
-          jumlah = parseInt(menu1Jumlah.value);
-          message += ` sebanyak ${jumlah} porsi`;
+    
+        function tampilkanPeta(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const mapUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+            if (confirm(`Lokasi Anda: ${mapUrl}. Apakah Anda ingin membagikan lokasi ini?`)) {
+                window.open(mapUrl);
+            }
         }
-      }
-
-      // Ambil nilai checkbox untuk menu kedua
-      const menu2Rasas = document.querySelectorAll("input[name='menu2_rasa']:checked");
-      if (menu2Rasas.length > 0) {
-        message += `\n\nBeli baso ikan dengan rasa `;
-        for (let i = 0; i < menu2Rasas.length; i++) {
-          if (i > 0) {
-            message += ', ';
-          }
-          message += menu2Rasas[i].value;
-        }
-
-        const menu2Jumlah = document.querySelector("input[name='menu2_jumlah']");
-        if (menu2Jumlah) {
-          jumlah = parseInt(menu2Jumlah.value);
-          message += ` sebanyak ${jumlah} porsi`;
-        }
-      }
-
-         // Ambil nilai checkbox untuk menu kedua
-         const menu3Rasas = document.querySelectorAll("input[name='menu3_rasa']:checked");
-      if (menu3Rasas.length > 0) {
-        message += `\n\nBeli Pastel isi ayam dengan rasa `;
-        for (let i = 0; i < menu3Rasas.length; i++) {
-          if (i > 0) {
-            message += ', ';
-          }
-          message += menu3Rasas[i].value;
-        }
-
-        const menu3Jumlah = document.querySelector("input[name='menu3_jumlah']");
-        if (menu3Jumlah) {
-          jumlah = parseInt(menu3Jumlah.value);
-          message += ` sebanyak ${jumlah} porsi`;
-        }
-      }
+    
+        function pesanMenu() {
+            const lokasi = document.getElementById("lokasi").value;
+            let message = document.getElementById("pesan").value || '';
+    
+            // Ambil nilai checkbox untuk menu pertama
+            const menu1Rasas = document.querySelectorAll("input[name='menu1_rasa']:checked");
+            if (menu1Rasas.length > 0) {
+                message += `\n\nBeli seblak lumpia dengan rasa `;
+                for (let i = 0; i < menu1Rasas.length; i++) {
+                    if (i > 0) {
+                        message += ', ';
+                    }
+                    message += menu1Rasas[i].value;
+                }
+                const menu1Jumlah = document.querySelector("input[name='menu1_jumlah']");
+                if (menu1Jumlah) {
+                    jumlah = parseInt(menu1Jumlah.value);
+                    message += ` sebanyak ${jumlah} porsi`;
+                }
+            }
+    
             // Ambil nilai checkbox untuk menu kedua
+            const menu2Rasas = document.querySelectorAll("input[name='menu2_rasa']:checked");
+            if (menu2Rasas.length > 0) {
+                message += `\n\nBeli baso ikan dengan rasa `;
+                for (let i = 0; i < menu2Rasas.length; i++) {
+                    if (i > 0) {
+                        message += ', ';
+                    }
+                    message += menu2Rasas[i].value;
+                }
+    
+                const menu2Jumlah = document.querySelector("input[name='menu2_jumlah']");
+                if (menu2Jumlah) {
+                    jumlah = parseInt(menu2Jumlah.value);
+                    message += ` sebanyak ${jumlah} porsi`;
+                }
+            }
+    
+            // Ambil nilai checkbox untuk menu ketiga
+            const menu3Rasas = document.querySelectorAll("input[name='menu3_rasa']:checked");
+            if (menu3Rasas.length > 0) {
+                message += `\n\nBeli Pastel isi ayam dengan rasa `;
+                for (let i = 0; i < menu3Rasas.length; i++) {
+                    if (i > 0) {
+                        message += ', ';
+                    }
+                    message += menu3Rasas[i].value;
+                }
+    
+                const menu3Jumlah = document.querySelector("input[name='menu3_jumlah']");
+                if (menu3Jumlah) {
+                    jumlah = parseInt(menu3Jumlah.value);
+                    message += ` sebanyak ${jumlah} porsi`;
+                }
+            }
+    
+            // Ambil nilai checkbox untuk menu keempat
             const menu4Rasas = document.querySelectorAll("input[name='menu4_rasa']:checked");
-      if (menu4Rasas.length > 0) {
-        message += `\n\nBeli Es coklat dengan `;
-        for (let i = 0; i < menu4Rasas.length; i++) {
-          if (i > 0) {
-            message += ', ';
-          }
-          message += menu4Rasas[i].value;
-        }
+            if (menu4Rasas.length > 0) {
+                message += `\n\nBeli Es coklat dengan `;
+                for (let i = 0; i < menu4Rasas.length; i++) {
+                    if (i > 0) {
+                        message += ', ';
+                    }
+                    message += menu4Rasas[i].value;
+                }
+    
+                const menu4Jumlah = document.querySelector("input[name='menu4_jumlah']");
+                if (menu4Jumlah) {
+                    jumlah = parseInt(menu4Jumlah.value);
+                    message += ` sebanyak ${jumlah} porsi`;
+                }
+            }
+           
 
-        const menu4Jumlah = document.querySelector("input[name='menu4_jumlah']");
-        if (menu4Jumlah) {
-          jumlah = parseInt(menu4Jumlah.value);
-          message += ` sebanyak ${jumlah} porsi`;
-        }
-      }
-      message += `\n\nLokasi: ${lokasi}`;
-      const link = `https://api.whatsapp.com/send?phone=${nomorWa}&text=${encodeURIComponent(message)}`;
-      window.open(link, '_blank');
-    }
-  </script>
+// Mengirim pesan melalui Crisp
+if (typeof $crisp !== "undefined") {
+    $crisp.push(["do", "message:send", ["text", message]]);
+    document.getElementById("pesan").value = "";
+    document.getElementById("lokasi").value = "";
+    openCrispChat(); // Membuka jendela obrolan Crisp setelah mengirim pesan
+} else {
+    alert("Crisp belum dimuat. Pastikan Anda telah memasang kode Crisp pada halaman Anda.");
+}
+}
+
+function openCrispChat() {
+if (typeof $crisp !== "undefined") {
+    $crisp.push(['do', 'chat:open']);
+} else {
+    alert("Crisp belum dimuat. Pastikan Anda telah memasang kode Crisp pada halaman Anda.");
+}
+}
+    </script>
+    
   <script>
     function updatePrice1() {
       const inputNumber1 = document.querySelector('.input-number');
@@ -668,60 +675,6 @@ body {
 
   <br><br><br><br><br>
 
-
-
-
-
-  <div id="indicator-container">
-    <div id="indicator" onclick="showExplanation()" onmouseover="showExplanation()" onmouseout="hideExplanation()"></div>
-    <img src="img/jurus.png" alt="">
-  </div>
-
-  <div id="explanation" >
-    <p>Indikator ini menunjukkan kecepatan koneksi internet Anda. Jika warna indikator adalah:</p>
-    <p>Biru: koneksi bagus</p>
-    <p>Hijau: koneksi cukup baik</p>
-    <p>Merah: tidak ada koneksi internet</p>
-  </div>
-
-
-
-  <script>
-  // deteksi koneksi internet
-  function checkConnection() {
-    const indicator = document.getElementById('indicator');
-    const online = navigator.onLine;
-
-    if (online) {
-      const connectionSpeed = navigator.connection.downlink;
-      if (connectionSpeed > 10) {
-        // koneksi bagus
-        indicator.style.backgroundColor = 'blue';
-      } else {
-        // koneksi cukup baik
-        indicator.style.backgroundColor = '#3bff55e1';
-        }
-      } else {
-        // tidak ada koneksi
-        indicator.style.backgroundColor = '#ff3b3ba4';
-      }
-      }
-
-      // panggil fungsi checkConnection() setiap 2 detik
-      setInterval(checkConnection, 2000);
-
-      // fungsi untuk menampilkan kotak penjelasan
-      function showExplanation() {
-        const explanation = document.getElementById('explanation');
-        explanation.style.display = 'block';
-      }
-
-      // fungsi untuk menyembunyikan kotak penjelasan
-      function hideExplanation() {
-        const explanation = document.getElementById('explanation');
-        explanation.style.display = 'none';
-      }
-      </script>
 
 
 
