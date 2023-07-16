@@ -2369,44 +2369,44 @@ label[for="full-mode-toggle"] {
 
 :root {
   --background-color: #ffffff;
-  --text-color: #ffffff;
+  --text-color: #3f3f3f;
 }
 
 [data-theme="color1"] {
-  --background-color: #00e727;
-  --text-color: #f0f0f0;
+  --background-color: #3fee33;
+  --text-color: #393939;
 }
 
 [data-theme="color2"] {
   --background-color: #355f82;
-  --text-color: #ffffff;
+  --text-color: #474747;
 }
 
 [data-theme="color3"] {
   --background-color: #ffffff;
-  --text-color: #000000;
+  --text-color: #3f3f3f;
 }
 
 [data-theme="color4"] {
-  --background-color: #ff0000;
-  --text-color: #ffffff;
+  --background-color: #f12b2b;
+  --text-color: #212121;
 }
 
 [data-theme="color5"] {
   --background-color: #c7d4e7;
-  --text-color: #000000d5;
+  --text-color: #434343d5;
 }
 
 [data-theme="color6"] {
   --background-color: rgb(111, 190, 255);
-  --text-color: #000000d5;
+  --text-color: #393939d5;
 }
 [data-theme="color7"] {
-  --background-color: #00a2ff;
+  --background-color: #1f92d5;
   --text-color: #000000d5;
 }
 [data-theme="color8"] {
-  --background-color: #ff5100;
+  --background-color: #a22a9c;
   --text-color: #ffffffd5;
 }
 body {
