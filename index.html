@@ -23,6 +23,7 @@
   <script src="speedtest.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f6dd2e35-71ca-415e-ac6c-a105f52d9ad6";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </head>
 <style>
   @media (max-width: 1024px) {
@@ -118,16 +119,19 @@
         <nav id="header-nav">
           <div class="header-nav-container">
             <a href="#" class="header-nav-logo"><img id="logo" src="img/png5.img.png" alt="Logo"></a>
+            
             <div class="header-nav-right">
+              
               <div class="full-mode-toggle">
                 <div id="indicator" style="margin-right: 10px;"></div>
                 <label class="switch" style="margin-right: 30px;">
                   <input type="checkbox" id="full-mode-toggle">
                   <span class="slider round"></span>
                 </label>
-
+           
                
               </div>
+              
             </div>
           </div>
         </nav>
@@ -181,50 +185,29 @@
       </div>
     </div> -->
     <br><br><br><br><br>
-
-
-   
-      <form class="flex-grow">
-        <div class="flex flex-wrap">
-          <input type="search" class="resize-none flex-grow h-10 px-4 py-2 mb-2 sm:mb-0 sm:mr-2 bg-gray-100 text-gray-800" id="inputRiyad" placeholder="Ketik di sini" style="border-radius: 5px;"></input>
-          <div class="relative">
-            <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center" id="libraryDropdownButton">
-              <span>Library</span>
-              <svg class="fill-current h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M6 8l4 4 4-4"></path>
-              </svg>
-            </button>
-            <ul class="absolute hidden text-gray-700 pt-1 mt-2 left-0 w-full sm:w-auto" id="libraryDropdownMenu">
-              <li class=""><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.youtube</a></li>
-              <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.google</a></li>
-              <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.yandex</a></li>
-              <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.bing</a></li>
-              <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.wikipedia</a></li>
-              <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.translate</a></li>
-            </ul>
-          </div>
-        </div>
-      </form>
-      <div>
+    <div class="container">
+         <div>
         <button id="start-btn" class="g-stt-btn" onclick="toggleRecognition()">
           <span class="icon">
             <i class="fa-solid fa-microphone ico"></i>
           </span>
         </button>
       </div>
-      <div>
+    
         <div class="popup-box">
           <span id="interim-text"></span>
         </div><br>
 
 
         <div style="position: relative;">
-          <textarea id="output-text7" style="width: 50%; "></textarea>
+          <textarea id="output-text7" style="width: 100%; "></textarea>
           <button onclick="pasteClipboard()"
             style="border: none; background: none; position: absolute; bottom: 10px; right: 10px;">
             <i class="fa-solid fa-paste" style="color: #aaaaaa;font-size: 20px;"></i>
           </button>
+        
         </div>
+       </div>
 
         <script>
           function pasteClipboard() {
@@ -239,127 +222,155 @@
           }
         </script>
 
+
+
+   
+    <form class="flex-grow relative">
+      <div class="flex flex-wrap">
+        <input type="search" class="resize-none flex-grow h-10 px-4 py-2 mb-2 sm:mb-0 sm:mr-2 bg-gray-100 text-gray-800" id="inputRiyad" placeholder="Ketik di sini" style="border-radius: 5px;"></input>
+        <div class="relative">
+          <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center" id="libraryDropdownButton">
+            <span>Library</span>
+            <svg class="fill-current h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M6 8l4 4 4-4"></path>
+            </svg>
+          </button>
+          <ul class=" hidden text-gray-700 pt-1 mt-2 left-0 w-full sm:w-auto" id="libraryDropdownMenu">
+            <li class=""><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.youtube</a></li>
+            <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.google</a></li>
+            <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.yandex</a></li>
+            <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.bing</a></li>
+            <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.wikipedia</a></li>
+            <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.translate</a></li>
+          </ul>
+        </div>
       </div>
+    </form>
     
-    <script>
-      const inputElement = document.getElementById('inputRiyad');
-    
-      inputElement.addEventListener('input', function() {
-        const searchText = inputElement.value.trim();
-        const words = searchText.split(' ');
-    
-        if (words.length > 1) {
-          const searchCommand = words[words.length - 1];
-    
-          if (searchCommand === '.youtube') {
-            const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
-    
-            if (searchKeyword !== '') {
-              window.location.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchKeyword)}`;
-            }
-          } else if (searchCommand === '.google') {
-            const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
-    
-            if (searchKeyword !== '') {
-              window.location.href = `https://www.google.com/search?q=${encodeURIComponent(searchKeyword)}`;
-            }
-          } else if (searchCommand === '.yandex') {
-            const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
-    
-            if (searchKeyword !== '') {
-              window.location.href = `https://www.yandex.com/search/?text=${encodeURIComponent(searchKeyword)}`;
-            }
-          } else if (searchCommand === '.bing') {
-            const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
-    
-            if (searchKeyword !== '') {
-              window.location.href = `https://www.bing.com/search?q=${encodeURIComponent(searchKeyword)}`;
-            }
-          } else if (searchCommand === '.wikipedia') {
-            const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
-    
-            if (searchKeyword !== '') {
-              window.location.href = `https://en.wikipedia.org/wiki/${encodeURIComponent(searchKeyword)}`;
-            }
-          } else if (searchCommand === '.translate') {
-            const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
-    
-            if (searchKeyword !== '') {
-              window.location.href = `https://translate.google.com/?sl=auto&tl=en&text=${encodeURIComponent(searchKeyword)}`;
-            }
-          }
-        }
-      });
-    </script>
-    
-    
-    <script>
-      const dropdownButton = document.getElementById('libraryDropdownButton');
-      const dropdownMenu = document.getElementById('libraryDropdownMenu');
-      const textarea = document.getElementById('inputRiyad');
-    
-      dropdownButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        dropdownMenu.classList.toggle('hidden');
-      });
-    
-      const dropdownItems = document.getElementsByClassName('dropdown-item');
-    
-      Array.from(dropdownItems).forEach(function(item) {
-        item.addEventListener('click', function(event) {
-          event.preventDefault();
-          const text = item.textContent.trim();
-          textarea.value += text + ' ';
-          dropdownMenu.classList.add('hidden');
-    
-          const searchCommand = text.trim();
-    
-          if (searchCommand === '.youtube') {
-            const searchKeyword = textarea.value.trim().replace('.youtube', '').trim();
-    
-            if (searchKeyword !== '') {
-              window.location.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchKeyword)}`;
-            }
-          } else if (searchCommand === '.google') {
-            const searchKeyword = textarea.value.trim().replace('.google', '').trim();
-    
-            if (searchKeyword !== '') {
-              window.location.href = `https://www.google.com/search?q=${encodeURIComponent(searchKeyword)}`;
-            }
-          } else if (searchCommand === '.yandex') {
-            const searchKeyword = textarea.value.trim().replace('.yandex', '').trim();
-    
-            if (searchKeyword !== '') {
-              window.location.href = `https://www.yandex.com/search/?text=${encodeURIComponent(searchKeyword)}`;
-            }
-          } else if (searchCommand === '.bing') {
-            const searchKeyword = textarea.value.trim().replace('.bing', '').trim();
-    
-            if (searchKeyword !== '') {
-              window.location.href = `https://www.bing.com/search?q=${encodeURIComponent(searchKeyword)}`;
-            }
-          } else if (searchCommand === '.wikipedia') {
-            const searchKeyword = textarea.value.trim().replace('.wikipedia', '').trim();
-    
-            if (searchKeyword !== '') {
-              window.location.href = `https://en.wikipedia.org/wiki/${encodeURIComponent(searchKeyword)}`;
-            }
-          } else if (searchCommand === '.translate') {
-            const searchKeyword = textarea.value.trim().replace('.translate', '').trim();
-    
-            if (searchKeyword !== '') {
-              window.location.href = `https://translate.google.com/?sl=auto&tl=en&text=${encodeURIComponent(searchKeyword)}`;
+      <script>
+        const inputElement = document.getElementById('inputRiyad');
+      
+        inputElement.addEventListener('input', function() {
+          const searchText = inputElement.value.trim();
+          const words = searchText.split(' ');
+      
+          if (words.length > 1) {
+            const searchCommand = words[words.length - 1];
+      
+            if (searchCommand === '.youtube') {
+              const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchKeyword)}`;
+              }
+            } else if (searchCommand === '.google') {
+              const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://www.google.com/search?q=${encodeURIComponent(searchKeyword)}`;
+              }
+            } else if (searchCommand === '.yandex') {
+              const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://www.yandex.com/search/?text=${encodeURIComponent(searchKeyword)}`;
+              }
+            } else if (searchCommand === '.bing') {
+              const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://www.bing.com/search?q=${encodeURIComponent(searchKeyword)}`;
+              }
+            } else if (searchCommand === '.wikipedia') {
+              const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://en.wikipedia.org/wiki/${encodeURIComponent(searchKeyword)}`;
+              }
+            } else if (searchCommand === '.translate') {
+              const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://translate.google.com/?sl=auto&tl=en&text=${encodeURIComponent(searchKeyword)}`;
+              }
             }
           }
         });
-      });
+      </script>
+      
+      
+      <script>
+        const dropdownButton = document.getElementById('libraryDropdownButton');
+        const dropdownMenu = document.getElementById('libraryDropdownMenu');
+        const textarea = document.getElementById('inputRiyad');
+      
+        dropdownButton.addEventListener('click', function(event) {
+          event.preventDefault();
+          dropdownMenu.classList.toggle('hidden');
+        });
+      
+        const dropdownItems = document.getElementsByClassName('dropdown-item');
+      
+        Array.from(dropdownItems).forEach(function(item) {
+          item.addEventListener('click', function(event) {
+            event.preventDefault();
+            const text = item.textContent.trim();
+            textarea.value += text + ' ';
+            dropdownMenu.classList.add('hidden');
+      
+            const searchCommand = text.trim();
+      
+            if (searchCommand === '.youtube') {
+              const searchKeyword = textarea.value.trim().replace('.youtube', '').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchKeyword)}`;
+              }
+            } else if (searchCommand === '.google') {
+              const searchKeyword = textarea.value.trim().replace('.google', '').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://www.google.com/search?q=${encodeURIComponent(searchKeyword)}`;
+              }
+            } else if (searchCommand === '.yandex') {
+              const searchKeyword = textarea.value.trim().replace('.yandex', '').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://www.yandex.com/search/?text=${encodeURIComponent(searchKeyword)}`;
+              }
+            } else if (searchCommand === '.bing') {
+              const searchKeyword = textarea.value.trim().replace('.bing', '').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://www.bing.com/search?q=${encodeURIComponent(searchKeyword)}`;
+              }
+            } else if (searchCommand === '.wikipedia') {
+              const searchKeyword = textarea.value.trim().replace('.wikipedia', '').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://en.wikipedia.org/wiki/${encodeURIComponent(searchKeyword)}`;
+              }
+            } else if (searchCommand === '.translate') {
+              const searchKeyword = textarea.value.trim().replace('.translate', '').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://translate.google.com/?sl=auto&tl=en&text=${encodeURIComponent(searchKeyword)}`;
+              }
+            }
+          });
+        });
+      
+        document.addEventListener('click', function(event) {
+          if (!dropdownButton.contains(event.target)) {
+            dropdownMenu.classList.add('hidden');
+          }
+        });
+      </script>
+
+   
+ 
     
-      document.addEventListener('click', function(event) {
-        if (!dropdownButton.contains(event.target)) {
-          dropdownMenu.classList.add('hidden');
-        }
-      });
-    </script>
+
     
 
     <div class="banner-container">
@@ -397,9 +408,6 @@
 
 
 
-
-
-
     <audio id="audio">
       <source src="assets/notif1.mp3" type="audio/mpeg">
     </audio>
@@ -407,6 +415,7 @@
 
 
     <div class="tab-container">
+      
 
       <div class="tabs">
         <div class="tab" data-tab="tab-1" onclick="playSound()">
@@ -2386,12 +2395,11 @@
 
 
 
-    <br>
 
 
-
-
-    <br>
+    <div class="battery-container">
+      <div class="battery-level" id="battery-level">-</div>
+    </div>
 
 
 
@@ -9404,7 +9412,7 @@ berikut hasilnya :
 
 
 
-      <!-- Membuat footer dibawh HTML CSS JAVA SCRIPT -->
+      <!-- Membuat footer dibawh HTML CSS JAVA SCRIPT
 
       <footer class="new-footer">
         <nav>
@@ -9428,7 +9436,7 @@ berikut hasilnya :
               </a></li>
           </ul>
         </nav>
-      </footer>
+      </footer> -->
 
       <script>
         var footer = document.querySelector('.new-footer');
