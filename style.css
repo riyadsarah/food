@@ -2406,8 +2406,8 @@ label[for="full-mode-toggle"] {
   --text-color: #000000d5;
 }
 [data-theme="color8"] {
-  --background-color: #a22a9c;
-  --text-color: #ffffffd5;
+  --background-color: #c15dbc;
+  --text-color: #5e5e5ed5;
 }
 body {
   background-color: var(--background-color);
