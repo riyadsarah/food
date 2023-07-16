@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins|Open+Sans&display=swap" rel="stylesheet">
   <script src="speedtest.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <style>
   @media (max-width: 1024px) {
@@ -104,6 +104,11 @@
       font-size: 14px;
     }
   }
+  .bot-rey-link {
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
 </style>
 
 <body>
@@ -121,13 +126,7 @@
                   <span class="slider round"></span>
                 </label>
 
-                <div>
-                  <button id="start-btn" class="g-stt-btn" onclick="toggleRecognition()">
-                    <span class="icon">
-                      <i class="fa-solid fa-microphone ico"></i>
-                    </span>
-                  </button>
-                </div>
+               
               </div>
             </div>
           </div>
@@ -156,7 +155,7 @@
       </div>
     </div>
     <br>
-   -->
+  
     <br><br><br>
 
     <div class="photo-container">
@@ -180,12 +179,191 @@
         <img src="img/8.jpg" alt="">
         <img src="img/7.jpeg" alt="">
       </div>
-    </div>
-    <br><br>
+    </div> -->
+    <br><br><br><br><br>
 
 
+   
+      <form class="flex-grow">
+        <div class="flex flex-wrap">
+          <input type="search" class="resize-none flex-grow h-10 px-4 py-2 mb-2 sm:mb-0 sm:mr-2 bg-gray-100 text-gray-800" id="inputRiyad" placeholder="Ketik di sini" style="border-radius: 5px;"></input>
+          <div class="relative">
+            <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center" id="libraryDropdownButton">
+              <span>Library</span>
+              <svg class="fill-current h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M6 8l4 4 4-4"></path>
+              </svg>
+            </button>
+            <ul class="absolute hidden text-gray-700 pt-1 mt-2 left-0 w-full sm:w-auto" id="libraryDropdownMenu">
+              <li class=""><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.youtube</a></li>
+              <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.google</a></li>
+              <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.yandex</a></li>
+              <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.bing</a></li>
+              <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.wikipedia</a></li>
+              <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.translate</a></li>
+            </ul>
+          </div>
+        </div>
+      </form>
+      <div>
+        <button id="start-btn" class="g-stt-btn" onclick="toggleRecognition()">
+          <span class="icon">
+            <i class="fa-solid fa-microphone ico"></i>
+          </span>
+        </button>
+      </div>
+      <div>
+        <div class="popup-box">
+          <span id="interim-text"></span>
+        </div><br>
+
+
+        <div style="position: relative;">
+          <textarea id="output-text7" style="width: 50%; "></textarea>
+          <button onclick="pasteClipboard()"
+            style="border: none; background: none; position: absolute; bottom: 10px; right: 10px;">
+            <i class="fa-solid fa-paste" style="color: #aaaaaa;font-size: 20px;"></i>
+          </button>
+        </div>
+
+        <script>
+          function pasteClipboard() {
+            navigator.clipboard.readText()
+              .then((text) => {
+                let outputText = document.getElementById("output-text7");
+                outputText.value = outputText.value + text;
+              })
+              .catch((err) => {
+                console.error('Failed to read clipboard contents: ', err);
+              });
+          }
+        </script>
+
+      </div>
+    
+    <script>
+      const inputElement = document.getElementById('inputRiyad');
+    
+      inputElement.addEventListener('input', function() {
+        const searchText = inputElement.value.trim();
+        const words = searchText.split(' ');
+    
+        if (words.length > 1) {
+          const searchCommand = words[words.length - 1];
+    
+          if (searchCommand === '.youtube') {
+            const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+    
+            if (searchKeyword !== '') {
+              window.location.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchKeyword)}`;
+            }
+          } else if (searchCommand === '.google') {
+            const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+    
+            if (searchKeyword !== '') {
+              window.location.href = `https://www.google.com/search?q=${encodeURIComponent(searchKeyword)}`;
+            }
+          } else if (searchCommand === '.yandex') {
+            const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+    
+            if (searchKeyword !== '') {
+              window.location.href = `https://www.yandex.com/search/?text=${encodeURIComponent(searchKeyword)}`;
+            }
+          } else if (searchCommand === '.bing') {
+            const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+    
+            if (searchKeyword !== '') {
+              window.location.href = `https://www.bing.com/search?q=${encodeURIComponent(searchKeyword)}`;
+            }
+          } else if (searchCommand === '.wikipedia') {
+            const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+    
+            if (searchKeyword !== '') {
+              window.location.href = `https://en.wikipedia.org/wiki/${encodeURIComponent(searchKeyword)}`;
+            }
+          } else if (searchCommand === '.translate') {
+            const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+    
+            if (searchKeyword !== '') {
+              window.location.href = `https://translate.google.com/?sl=auto&tl=en&text=${encodeURIComponent(searchKeyword)}`;
+            }
+          }
+        }
+      });
+    </script>
+    
+    
+    <script>
+      const dropdownButton = document.getElementById('libraryDropdownButton');
+      const dropdownMenu = document.getElementById('libraryDropdownMenu');
+      const textarea = document.getElementById('inputRiyad');
+    
+      dropdownButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        dropdownMenu.classList.toggle('hidden');
+      });
+    
+      const dropdownItems = document.getElementsByClassName('dropdown-item');
+    
+      Array.from(dropdownItems).forEach(function(item) {
+        item.addEventListener('click', function(event) {
+          event.preventDefault();
+          const text = item.textContent.trim();
+          textarea.value += text + ' ';
+          dropdownMenu.classList.add('hidden');
+    
+          const searchCommand = text.trim();
+    
+          if (searchCommand === '.youtube') {
+            const searchKeyword = textarea.value.trim().replace('.youtube', '').trim();
+    
+            if (searchKeyword !== '') {
+              window.location.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchKeyword)}`;
+            }
+          } else if (searchCommand === '.google') {
+            const searchKeyword = textarea.value.trim().replace('.google', '').trim();
+    
+            if (searchKeyword !== '') {
+              window.location.href = `https://www.google.com/search?q=${encodeURIComponent(searchKeyword)}`;
+            }
+          } else if (searchCommand === '.yandex') {
+            const searchKeyword = textarea.value.trim().replace('.yandex', '').trim();
+    
+            if (searchKeyword !== '') {
+              window.location.href = `https://www.yandex.com/search/?text=${encodeURIComponent(searchKeyword)}`;
+            }
+          } else if (searchCommand === '.bing') {
+            const searchKeyword = textarea.value.trim().replace('.bing', '').trim();
+    
+            if (searchKeyword !== '') {
+              window.location.href = `https://www.bing.com/search?q=${encodeURIComponent(searchKeyword)}`;
+            }
+          } else if (searchCommand === '.wikipedia') {
+            const searchKeyword = textarea.value.trim().replace('.wikipedia', '').trim();
+    
+            if (searchKeyword !== '') {
+              window.location.href = `https://en.wikipedia.org/wiki/${encodeURIComponent(searchKeyword)}`;
+            }
+          } else if (searchCommand === '.translate') {
+            const searchKeyword = textarea.value.trim().replace('.translate', '').trim();
+    
+            if (searchKeyword !== '') {
+              window.location.href = `https://translate.google.com/?sl=auto&tl=en&text=${encodeURIComponent(searchKeyword)}`;
+            }
+          }
+        });
+      });
+    
+      document.addEventListener('click', function(event) {
+        if (!dropdownButton.contains(event.target)) {
+          dropdownMenu.classList.add('hidden');
+        }
+      });
+    </script>
+    
 
     <div class="banner-container">
+      <!--
       <div class="product-image">
         <img src="img/iklan 1.jpg" alt="product">
         <img src="img/iklan 2.jpg" alt="product">
@@ -201,7 +379,7 @@
         </div>
       </div>
     </div>
-    <br>
+    <br> -->
 
 
 
@@ -218,18 +396,7 @@
 
 
 
-    <div>
-      <div id="color-buttons">
-        <button id="color1-btn"><i class="fa-solid fa-paint-roller"></i></button>
-        <button id="color2-btn"><i class="fa-solid fa-paint-roller"></i></button>
-        <button id="color3-btn"><i class="fa-solid fa-paint-roller"></i></button>
-        <button id="color4-btn"><i class="fa-solid fa-paint-roller"></i></button>
-        <button id="color5-btn"><i class="fa-solid fa-paint-roller"></i></button>
-        <button id="color6-btn"><i class="fa-solid fa-paint-roller"></i></button>
-        <button id="color7-btn"><i class="fa-solid fa-paint-roller"></i></button>
-        <button id="color8-btn"><i class="fa-solid fa-paint-roller"></i></button>
-      </div>
-    </div><br>
+
 
 
 
@@ -636,7 +803,18 @@
       </div>
     </div>
 
-
+    <div>
+      <div id="color-buttons">
+        <button id="color1-btn"><i class="fa-solid fa-paint-roller"></i></button>
+        <button id="color2-btn"><i class="fa-solid fa-paint-roller"></i></button>
+        <button id="color3-btn"><i class="fa-solid fa-paint-roller"></i></button>
+        <button id="color4-btn"><i class="fa-solid fa-paint-roller"></i></button>
+        <button id="color5-btn"><i class="fa-solid fa-paint-roller"></i></button>
+        <button id="color6-btn"><i class="fa-solid fa-paint-roller"></i></button>
+        <button id="color7-btn"><i class="fa-solid fa-paint-roller"></i></button>
+        <button id="color8-btn"><i class="fa-solid fa-paint-roller"></i></button>
+      </div>
+    </div><br>
 
     <div class="tab-container">
       <div class="tabs">
@@ -1491,11 +1669,8 @@
       </div>
 
     </div>
+ 
     <br><br>
-    <div class="premium-features">
-      <h2>Fitur Terbaru</h2>
-    </div>
-    <br><br><br><br><br><br><br>
 
 
     <button class="banner" data-bs-toggle="modal" data-bs-target="#simBoxModal" style="background-color: crimson;">
@@ -1569,15 +1744,12 @@
       Catatan Conter
       <img src="img/Untitled-1444.png" alt="Gambar banner">
     </button><br>
-    <button class="banner" onclick="location.href='service.html'">
-      service hp
-      <img src="img/Untitled-1444.png" alt="Gambar banner">
-    </button><br>
+   
     <br>
 
 
 
-    <div class="container-b">
+    <div class="container-b" style="display: none;">
       <div class="title-container">
         <h1 class="title">Suara ke teks</h1>
       </div><br>
@@ -1692,34 +1864,7 @@
       <div>
 
 
-        <div>
-          <div class="popup-box">
-            <span id="interim-text"></span>
-          </div><br>
 
-
-          <div style="position: relative;">
-            <textarea id="output-text7" style="width: 100%; "></textarea>
-            <button onclick="pasteClipboard()"
-              style="border: none; background: none; position: absolute; bottom: 10px; right: 10px;">
-              <i class="fa-solid fa-paste" style="color: #aaaaaa;font-size: 20px;"></i>
-            </button>
-          </div>
-
-          <script>
-            function pasteClipboard() {
-              navigator.clipboard.readText()
-                .then((text) => {
-                  let outputText = document.getElementById("output-text7");
-                  outputText.value = outputText.value + text;
-                })
-                .catch((err) => {
-                  console.error('Failed to read clipboard contents: ', err);
-                });
-            }
-          </script>
-
-        </div>
         <div>
           <button type="button11" id="share-btn" onclick="shareToWhatsApp()"><i
               class="fa-solid fa-share-nodes"></i></button>
@@ -2614,13 +2759,13 @@
 
 
 
-
+<!--
 
       <div id="Produk">
         <div class="card-container" id="cardSection">
 
 
-          <!--1 -->
+        
           <div class="card">
             <a href="img/7.jpeg" data-lightbox="product" id="product-img1">
               <img src="img/7.jpeg" alt="product">
@@ -2716,7 +2861,6 @@
 
 
 
-          <!--2 -->
           <div class="card">
             <a href="img/8.jpg" data-lightbox="product" id="product-img2">
               <img src="img/8.jpg" alt="product">
@@ -2809,7 +2953,6 @@
           </script>
 
 
-          <!--3 -->
           <div class="card">
             <a href="img/9.jpg" data-lightbox="product" id="product-img3">
               <img src="img/9.jpg" alt="product">
@@ -2899,7 +3042,7 @@
           </script>
 
 
-          <!--4 -->
+      
           <div class="card">
             <a href="img/10.jpg" data-lightbox="product" id="product-img4">
               <img src="img/10.jpg" alt="product">
@@ -2989,7 +3132,6 @@
           </script>
 
 
-          <!--5 -->
           <div class="card">
             <a href="img/11.jpg" data-lightbox="product" id="product-img5">
               <img src="img/12.jpg" alt="product">
@@ -3077,7 +3219,6 @@
             });
           </script>
 
-          <!--6 -->
           <div class="card">
             <a href="img/10.jpg" data-lightbox="product" id="product-img6">
               <img src="img/10.jpg" alt="product">
@@ -3166,7 +3307,7 @@
             });
           </script>
 
-          <!--7 -->
+        
           <div class="card">
             <a href="img/10.jpg" data-lightbox="product" id="product-img7">
               <img src="img/10.jpg" alt="product">
@@ -3257,7 +3398,7 @@
           </script>
 
 
-          <!--8 -->
+      
           <div class="card">
             <a href="img/10.jpg" data-lightbox="product" id="product-img8">
               <img src="img/10.jpg" alt="product">
@@ -3348,7 +3489,6 @@
           </script>
 
 
-          <!--9 -->
           <div class="card">
             <a href="img/10.jpg" data-lightbox="product" id="product-img9">
               <img src="img/10.jpg" alt="product">
@@ -3439,7 +3579,7 @@
           </script>
 
 
-          <!--10 -->
+
           <div class="card">
             <a href="img/10.jpg" data-lightbox="product" id="product-img10">
               <img src="img/10.jpg" alt="product">
@@ -3530,8 +3670,6 @@
             });
           </script>
 
-
-          <!--11-->
           <div class="card">
             <a href="img/10.jpg" data-lightbox="product" id="product-img11">
               <img src="img/10.jpg" alt="product">
@@ -3623,7 +3761,6 @@
           </script>
 
 
-          <!--12 -->
           <div class="card">
             <a href="img/10.jpg" data-lightbox="product" id="product-img12">
               <img src="img/10.jpg" alt="product">
@@ -3762,7 +3899,7 @@
 
       <div class="card-container">
 
-        <!--13 -->
+ 
         <div class="card">
           <a href="img/1.img.jpg" data-lightbox="product" id="product-img13">
             <img src="img/1.img.jpg" alt="product">
@@ -3851,7 +3988,6 @@
           });
         </script>
 
-        <!--14 -->
         <div class="card">
           <a href="img/2.img.jpg" data-lightbox="product" id="product-img14">
             <img src="img/2.img.jpg" alt="product">
@@ -3941,7 +4077,7 @@
         </script>
 
 
-        <!--15 -->
+
         <div class="card">
           <a href="img/1.img.jpg" data-lightbox="product" id="product-img15">
             <img src="img/1.img.jpg" alt="product">
@@ -4031,7 +4167,6 @@
           });
         </script>
 
-        <!--16-->
         <div class="card">
           <a href="img/7.jpeg" data-lightbox="product" id="product-img16">
             <img src="img/7.jpeg" alt="product">
@@ -4121,7 +4256,6 @@
         </script>
 
 
-        <!--17-->
         <div class="card">
           <a href="img/1.img.jpg" data-lightbox="product" id="product-img17">
             <img src="img/1.img.jpg" alt="product">
@@ -4211,7 +4345,7 @@
         </script>
 
 
-        <!--18 -->
+ 
         <div class="card">
           <a href="img/1.img.jpg" data-lightbox="product" id="product-img18">
             <img src="img/1.img.jpg" alt="product">
@@ -4301,7 +4435,7 @@
         </script>
 
 
-        <!--19-->
+ 
         <div class="card">
           <a href="img/1.img.jpg" data-lightbox="product" id="product-img19">
             <img src="img/1.img.jpg" alt="product">
@@ -4391,7 +4525,7 @@
         </script>
 
 
-        <!--20 -->
+
         <div class="card">
           <a href="img/1.img.jpg" data-lightbox="product" id="product-img20">
             <img src="img/1.img.jpg" alt="product">
@@ -4481,7 +4615,6 @@
         </script>
 
 
-        <!--21-->
         <div class="card">
           <a href="img/1.img.jpg" data-lightbox="product" id="product-img21">
             <img src="img/1.img.jpg" alt="product">
@@ -4571,7 +4704,6 @@
         </script>
 
 
-        <!--22 -->
         <div class="card">
           <a href="img/1.img.jpg" data-lightbox="product" id="product-img22">
             <img src="img/1.img.jpg" alt="product">
@@ -4661,7 +4793,7 @@
         </script>
 
 
-        <!--23-->
+
         <div class="card">
           <a href="img/15.jpg" data-lightbox="product" id="product-img23">
             <img src="img/15.jpg" alt="product">
@@ -4751,7 +4883,6 @@
         </script>
 
 
-        <!--24 -->
         <div class="card">
           <a href="img/15.jpg" data-lightbox="product" id="product-img24">
             <img src="img/15.jpg" alt="product">
@@ -4804,7 +4935,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <script>
         const quantityInput24 = document.getElementById('quantity24');
         const quantityMinus24 = document.querySelector('.card-quantity-24 .quantity-minus');
