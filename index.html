@@ -225,27 +225,29 @@
 
 
    
-    <form class="flex-grow relative">
-      <div class="flex flex-wrap">
-        <input type="search" class="resize-none flex-grow h-10 px-4 py-2 mb-2 sm:mb-0 sm:mr-2 bg-gray-100 text-gray-800" id="inputRiyad" placeholder="Ketik di sini" style="border-radius: 5px;"></input>
-        <div class="relative">
-          <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center" id="libraryDropdownButton">
-            <span>Library</span>
-            <svg class="fill-current h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <path d="M6 8l4 4 4-4"></path>
-            </svg>
-          </button>
-          <ul class=" hidden text-gray-700 pt-1 mt-2 left-0 w-full sm:w-auto" id="libraryDropdownMenu">
-            <li class=""><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.youtube</a></li>
-            <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.google</a></li>
-            <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.yandex</a></li>
-            <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.bing</a></li>
-            <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.wikipedia</a></li>
-            <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.translate</a></li>
-          </ul>
-        </div>
-      </div>
-    </form>
+<form class="flex-grow relative">
+
+    <input type="search" class="resize-none flex-grow h-10 w-full px-4 py-2 mb-5 sm:mb-0 sm:mr-4 bg-gray-100 text-gray-800" id="inputRiyad" placeholder="search" style="border-radius:15px;"></input>
+    <div class="relative">
+      <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-6 rounded inline-flex items-center" id="libraryDropdownButton">
+        <span>Library</span>
+        <svg class="fill-current h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <path d="M6 8l4 4 4-4"></path>
+        </svg>
+      </button>
+      <ul class="hidden text-gray-700 pt-1 mt-2 left-0 w-full sm:w-auto" id="libraryDropdownMenu">
+        <li class="flex items-center"><img src="img/youtube.png" alt="Foto Y" class="h-6 w-6 rounded-full mr-2"><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.y</a></li>
+        <li class="flex items-center"><img src="img/goog.png" alt="Foto G" class="h-6 w-6 rounded-full mr-2"><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.g</a></li>
+        <li class="flex items-center"><img src="img/yan.jpg" alt="Foto X" class="h-6 w-6 rounded-full mr-2"><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.x</a></li>
+        <li class="flex items-center"><img src="img/bing.png" alt="Foto B" class="h-6 w-6 rounded-full mr-2"><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.b</a></li>
+        <li class="flex items-center"><img src="img/wiki.png" alt="Foto W" class="h-6 w-6 rounded-full mr-2"><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.w</a></li>
+        <li class="flex items-center"><img src="img/trans.png" alt="Foto T" class="h-6 w-6 rounded-full mr-2"><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap dropdown-item" href="#">.t</a></li>
+      </ul>
+      
+    </div>
+
+</form>
+
     
       <script>
         const inputElement = document.getElementById('inputRiyad');
@@ -257,37 +259,37 @@
           if (words.length > 1) {
             const searchCommand = words[words.length - 1];
       
-            if (searchCommand === '.youtube') {
+            if (searchCommand === '.y') {
               const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
       
               if (searchKeyword !== '') {
                 window.location.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchKeyword)}`;
               }
-            } else if (searchCommand === '.google') {
+            } else if (searchCommand === '.g') {
               const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
       
               if (searchKeyword !== '') {
                 window.location.href = `https://www.google.com/search?q=${encodeURIComponent(searchKeyword)}`;
               }
-            } else if (searchCommand === '.yandex') {
+            } else if (searchCommand === '.x') {
               const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
       
               if (searchKeyword !== '') {
                 window.location.href = `https://www.yandex.com/search/?text=${encodeURIComponent(searchKeyword)}`;
               }
-            } else if (searchCommand === '.bing') {
+            } else if (searchCommand === '.b') {
               const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
       
               if (searchKeyword !== '') {
                 window.location.href = `https://www.bing.com/search?q=${encodeURIComponent(searchKeyword)}`;
               }
-            } else if (searchCommand === '.wikipedia') {
+            } else if (searchCommand === '.w') {
               const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
       
               if (searchKeyword !== '') {
                 window.location.href = `https://en.wikipedia.org/wiki/${encodeURIComponent(searchKeyword)}`;
               }
-            } else if (searchCommand === '.translate') {
+            } else if (searchCommand === '.t') {
               const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
       
               if (searchKeyword !== '') {
@@ -320,38 +322,38 @@
       
             const searchCommand = text.trim();
       
-            if (searchCommand === '.youtube') {
-              const searchKeyword = textarea.value.trim().replace('.youtube', '').trim();
+            if (searchCommand === '.y') {
+              const searchKeyword = textarea.value.trim().replace('.y', '').trim();
       
               if (searchKeyword !== '') {
                 window.location.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchKeyword)}`;
               }
-            } else if (searchCommand === '.google') {
-              const searchKeyword = textarea.value.trim().replace('.google', '').trim();
+            } else if (searchCommand === '.g') {
+              const searchKeyword = textarea.value.trim().replace('.g', '').trim();
       
               if (searchKeyword !== '') {
                 window.location.href = `https://www.google.com/search?q=${encodeURIComponent(searchKeyword)}`;
               }
-            } else if (searchCommand === '.yandex') {
-              const searchKeyword = textarea.value.trim().replace('.yandex', '').trim();
+            } else if (searchCommand === '.x') {
+              const searchKeyword = textarea.value.trim().replace('.x', '').trim();
       
               if (searchKeyword !== '') {
                 window.location.href = `https://www.yandex.com/search/?text=${encodeURIComponent(searchKeyword)}`;
               }
-            } else if (searchCommand === '.bing') {
-              const searchKeyword = textarea.value.trim().replace('.bing', '').trim();
+            } else if (searchCommand === '.b') {
+              const searchKeyword = textarea.value.trim().replace('.b', '').trim();
       
               if (searchKeyword !== '') {
                 window.location.href = `https://www.bing.com/search?q=${encodeURIComponent(searchKeyword)}`;
               }
-            } else if (searchCommand === '.wikipedia') {
-              const searchKeyword = textarea.value.trim().replace('.wikipedia', '').trim();
+            } else if (searchCommand === '.w') {
+              const searchKeyword = textarea.value.trim().replace('.w', '').trim();
       
               if (searchKeyword !== '') {
                 window.location.href = `https://en.wikipedia.org/wiki/${encodeURIComponent(searchKeyword)}`;
               }
-            } else if (searchCommand === '.translate') {
-              const searchKeyword = textarea.value.trim().replace('.translate', '').trim();
+            } else if (searchCommand === '.t') {
+              const searchKeyword = textarea.value.trim().replace('.t', '').trim();
       
               if (searchKeyword !== '') {
                 window.location.href = `https://translate.google.com/?sl=auto&tl=en&text=${encodeURIComponent(searchKeyword)}`;
@@ -813,7 +815,7 @@
     </div>
 
     <div>
-      <div id="color-buttons">
+      <div >
         <button id="color1-btn"><i class="fa-solid fa-paint-roller"></i></button>
         <button id="color2-btn"><i class="fa-solid fa-paint-roller"></i></button>
         <button id="color3-btn"><i class="fa-solid fa-paint-roller"></i></button>
@@ -1859,8 +1861,8 @@
                     style="font-size: 27px; margin-left: 8px; color: #043fff;"></i></td>
               </tr>
               <tr>
-                <td style="margin-right: 10px;">warna orange <i class="fa-solid fa-paint-roller"
-                    style="font-size: 27px; margin-left: 8px; color: #ff6804;"></i></td>
+                <td style="margin-right: 10px;">warna ungu <i class="fa-solid fa-paint-roller"
+                    style="font-size: 27px; margin-left: 8px; color: #cd04ff;"></i></td>
               </tr>
             </tbody>
           </table>
