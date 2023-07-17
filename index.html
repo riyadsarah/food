@@ -295,7 +295,25 @@
               if (searchKeyword !== '') {
                 window.location.href = `https://translate.google.com/?sl=auto&tl=en&text=${encodeURIComponent(searchKeyword)}`;
               }
-            }
+            } else if (searchCommand === '.sex1') {
+              const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://www.xnxx.com/search/${encodeURIComponent(searchKeyword)}`;
+              }
+            } else if (searchCommand === '.sex2') {
+              const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://id.xhamster.com/search/${encodeURIComponent(searchKeyword)}`;
+              }
+            } else if (searchCommand === '.sex3') {
+              const searchKeyword = words.slice(0, words.length - 1).join(' ').trim();
+      
+              if (searchKeyword !== '') {
+                window.location.href = `https://www.pornhub.com/video/search?search=${encodeURIComponent(searchKeyword)}`;
+              }
+            } 
           }
         });
       </script>
