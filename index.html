@@ -109,6 +109,27 @@
   margin-bottom: 10px;
   margin-right: 10px;
 }
+/* Gaya dasar ikon refresh */
+.refresh-icon {
+  
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #01a2ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Gaya ikon */
+.refresh-icon i {
+  font-size: 24px;
+  color: #ffffff;
+}
 
 </style>
 
@@ -124,10 +145,16 @@
               
               <div class="full-mode-toggle">
                 <div id="indicator" style="margin-right: 10px;"></div>
-                <label class="switch" style="margin-right: 30px;">
-                  <input type="checkbox" id="full-mode-toggle">
-                  <span class="slider round"></span>
-                </label>
+                <div class="refresh-icon" onclick="refreshPage()">
+                  <i class="fas fa-sync-alt"></i>
+                </div>
+              
+                <script>
+                  // Fungsi untuk me-refresh halaman saat ikon diklik
+                  function refreshPage() {
+                    window.location.reload();
+                  }
+                </script>
            
                
               </div>
