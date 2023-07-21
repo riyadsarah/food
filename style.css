@@ -193,7 +193,7 @@ h3 {
   width: 0%;
   height: 4px;
   background-color: #3bff55e1;
-  animation: loading 2s linear;
+  animation: loading 20s linear;
 }
 
 /* Loading logo */
